@@ -20,7 +20,7 @@ function App() {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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'
+        'Authorization': `Bearer import.meta.env.VITE_BEARER_TOKEN`
     },
       url: 'https://api.openai.com/v1/completions',
       data: JSON.stringify({
@@ -37,7 +37,7 @@ function App() {
   const changeLanguage = () =>{
     i18n.changeLanguage("en");
   }
-console.log("theme--->",theme)
+console.log("theme--->",theme,import.meta.env)
   return (
     <div className='App'>
       <div>
