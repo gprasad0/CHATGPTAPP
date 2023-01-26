@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import reactLogo from './assets/react.svg';
 import axios from 'axios';
 import './App.css';
+import { useTranslation } from 'react-i18next';
+import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 
 function App() {
+  const theme = useTheme();
+  const { t, i18n } = useTranslation();
   const [count, setCount] = useState(0);
   useEffect(() => {
-    fetchFunction();
+    // fetchFunction();
   }, []);
   const fetchFunction = async () => {
     var temp = 0.2
@@ -29,6 +33,11 @@ function App() {
     // setCount(data.data.products[0].brand);
     console.log('f----->', data.data.choices[0].text);
   };
+
+  const changeLanguage = () =>{
+    i18n.changeLanguage("en");
+  }
+console.log("theme--->",theme)
   return (
     <div className='App'>
       <div>
@@ -41,8 +50,8 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button style={{}} onClick={() => setCount((count) => count + 1)} >
+          count is {t('react')}
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
@@ -51,6 +60,7 @@ function App() {
       <p className='read-the-docs'>
         Click on the Vite and React logos to learn more
       </p>
+      <button onClick={changeLanguage}>click</button>
     </div>
   );
 }
