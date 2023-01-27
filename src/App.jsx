@@ -20,7 +20,7 @@ function App() {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer import.meta.env.VITE_BEARER_TOKEN`
+        'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
     },
       url: 'https://api.openai.com/v1/completions',
       data: JSON.stringify({
