@@ -1,5 +1,5 @@
-import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import {styled, useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -18,6 +18,26 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { useState } from 'react';
+
+export const SideTopBar = ()=>{
+  const theme = useTheme();
+
+  const [open, setOpen] = useState(false);
+  // const classes = useStyles();
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  // const { t, i18n } = useTranslation();
+
+  // const changeLanguage = () =>{
+  //   i18n.changeLanguage("en");
+  // }
 
 const drawerWidth = 240;
 
@@ -86,26 +106,12 @@ const Drawer = styled(MuiDrawer, {
   })
 }));
 
-export default function MiniDrawer() {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <Box sx={{ display: "flex" }}>
-      {/* <CssBaseline /> */}
-      <AppBar
-        position="fixed"
-        open={open}
-        sx={{ background: "red" }}
-      >
+return (
+  <Box sx={{ display: "flex" }}>
+    {/* <CssBaseline /> */}
+    <AppBar position="fixed" open={open} sx={{ 
+      // background: "red" 
+      }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -122,22 +128,22 @@ export default function MiniDrawer() {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader sx={{background:"green"}}>
+        <DrawerHeader sx={{
+          //  background: "green" 
+           }}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <MenuIcon />
-            ) : (
-              <MenuIcon />
-            )}
+            {theme.direction === "rtl" ? <ChevronLeftIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
         {/* <Divider /> */}
-        <List sx={{background:"red"}}>
+        {/* <List sx={{
+          //  background: "red" 
+           }}>
           {["Inbox", "Send email", "Drafts"].map((text, index) => (
             <div>deded</div>
           ))}
         </List>
-        <Divider />
+        <Divider /> */}
         <List>
           {["All mail", "Trash", "Spam"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
@@ -163,44 +169,11 @@ export default function MiniDrawer() {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {/* <DrawerHeader /> */}
-       
-       <h1>eeded</h1>
-      </Box>
-    </Box>
-  );
+    {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+     
+     <h1>eeded</h1>
+   </Box>  */}
+
+  </Box>
+);
 }
-
-
-{/* <TextField
-          // disabled={textFieldDisable}
-          // id="outlined-basic"
-          // label='Citation'
-          // value={citation}
-          // variant="outlined"
-          multiline
-          rows={10}
-          sx={{ 
-            width: "70%", 
-            marginTop: "100px",
-           
-            borderRadius:"20px" ,
-            '& .MuiInputBase-root': {
-              borderRadius: '15px',
-              border:"2px solid green",
-              '&:hover, &.Mui-focusVisible':{
-                border:"2px solid red",
-              }
-            },
-          }}
-          // focused
-          inputProps={{
-            minlength: 250,
-            
-            maxLength: 500,
-            // border:"2px solid red"
-          }}
-          // onChange={handleCitation}
-          placeholder="Minimum of 50 characters and Maximum of 500 characters"
-        /> */}

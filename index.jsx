@@ -1,12 +1,11 @@
+import App from './src/App';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css';
-import '../i18n';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import {store} from "./redux/store";
+import {store} from "./src/redux/store";
+import './i18n';
 
 const theme = createTheme({
   palette: {
