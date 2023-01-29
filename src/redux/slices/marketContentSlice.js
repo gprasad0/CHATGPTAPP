@@ -1,30 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  value: 0,
+  marketContentData : [" frfefefeffef frfefefeffef frfefefeffef frfefefeffef frfefefeffef frfefefeffef frfefefeffef","efefeeffefe"]
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const marketContentSlice = createSlice({
+  name: 'MARKET/CONTENT',
   initialState,
   reducers: {
-    increment: (state) => {
+    marketContentAction: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.value += 1
+      state.marketContentData = state.payload
     },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
-    },
+   
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { marketContentAction } = marketContentSlice.actions
 
-export default counterSlice.reducer
+export default marketContentSlice.reducer
