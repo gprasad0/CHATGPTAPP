@@ -4,8 +4,8 @@ import { marketContentAction } from "./slices/marketContentSlice";
 
 export const generateMarketingContentAction = (data) => async (dispatch) => {
     try {
-        var temp = 0.2
-    const prompt = "fruit";
+    //     var temp = 0.2
+    // const prompt = "fruit";
   
       let data = await axios({
         method: 'post',

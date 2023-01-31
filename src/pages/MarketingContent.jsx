@@ -11,11 +11,11 @@ console.log("marketData==>",marketData)
   return (
     <Box
       component='main'
-      sx={{ flexGrow: 1, marginTop: '56px', marginLeft: '68px' }}
+      sx={{ flexGrow: 1, marginTop: '56px', marginLeft: '58px' }}
     >
       <div style={{ display: 'flex' }}>
-        <div style={{ width: '40vw', background: '#cbc7c7' }}>
-          <div>GENERATE MARKETING CONTENT</div>
+        <div style={{ width: '40vw', background: '#cbc7c7',padding:"3px" }}>
+          <h1 style={{}}>GENERATE MARKETING CONTENT</h1>
           <div>Description</div>
           <TextField
             // disabled={textFieldDisable}
@@ -24,13 +24,16 @@ console.log("marketData==>",marketData)
             // value={citation}
             variant='outlined'
             multiline
-            // rows={10}
-            sx={{ width: '70%' }}
+            rows={8}
+            sx={{ width: '85%',borderRadius:"10px",'& .MuiOutlinedInput-root': {
+                borderRadius: '20px',
+             } }}
             // focused
             inputProps={{
               // minlength: 250,
               //   maxLength: 500,
               height: '70px',
+              
             }}
             // onChange={handleCitation}
             // placeholder='Minimum of 50 characters and Maximum of 500 characters'
@@ -45,12 +48,17 @@ console.log("marketData==>",marketData)
           <div>Creativity</div>
 
           <div>Outputs</div>
-          <Button onClick={() => dispatch(generateMarketingContentAction())}>
-            Generate Now
-          </Button>
+          
+          <Button
+          variant='contained'
+          sx={{ background: 'yellow',color:"black"}}
+          onClick = {() => handleFinalSubmit("save")}
+        >
+          Generate Now
+        </Button>
         </div>
         <div style={{ width: '60vw',height:"60vh" }}>
-          <div>Choose from the results</div>
+          <h1 style={{}}>Choose from the results</h1>
           <div style={{ }}>
               
             {marketData.map((data) => (

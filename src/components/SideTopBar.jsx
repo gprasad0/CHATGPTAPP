@@ -47,7 +47,9 @@ const openedMixin = (theme) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen
   }),
-  overflowX: "hidden"
+  overflowX: "hidden",
+  background:"#4723d9" 
+
 });
 
 const closedMixin = (theme) => ({
@@ -56,6 +58,8 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen
   }),
   overflowX: "hidden",
+  background:"#4723d9" ,
+
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`
@@ -107,9 +111,9 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 return (
-  <Box sx={{ display: "flex" }}>
+  <Box sx={{ display: "flex"}}>
     {/* <CssBaseline /> */}
-    <AppBar position="fixed" open={open} sx={{ 
+    {/* <AppBar position="fixed" open={open} sx={{ 
       // background: "red" 
       }}>
         <Toolbar>
@@ -126,8 +130,8 @@ return (
             <MenuIcon />
           </IconButton>
         </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
+      </AppBar> */}
+      <Drawer variant="permanent" open={open} sx={{background:"#4723d9"}}>
         <DrawerHeader sx={{
           //  background: "green" 
            }}>
@@ -144,9 +148,9 @@ return (
           ))}
         </List>
         <Divider /> */}
-        <List>
+        <List sx={{background:"#4723d9"}}>
           {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+            <ListItem key={text} disablePadding sx={{ display: "block",color:"white", borderLeft:"2px solid white" }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -158,7 +162,9 @@ return (
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    color:"white"
+                   
                   }}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
