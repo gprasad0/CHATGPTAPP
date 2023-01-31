@@ -14,7 +14,7 @@ console.log("theme=====>",theme)
     <>
       <SideTopBar />
       <Routes>
-        <Route path='/' element={<MarketingContent />} />
+        {/* <Route path='/' element={<MarketingContent />} /> */}
         {/* <Route path='/home' element={<Sample2 />} /> */}
       </Routes>
     </>
