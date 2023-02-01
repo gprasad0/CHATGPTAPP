@@ -19,6 +19,15 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { MarketingContent } from '../pages/MarketingContent';
+import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
+import GridViewIcon from '@mui/icons-material/GridView';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import FolderOpenOutlinedIcon from '@mui/icons-material/FolderOpenOutlined';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import {MenuIconDiv} from './commonComponents'
 
 const drawerWidth = 240;
 
@@ -120,20 +129,24 @@ export  function SideTopBar() {
           >
             <MenuIcon />
           </IconButton>
+          <MenuIcon sx={{color:"#4723d9"}}  onClick={handleDrawerOpen} />
+          
           {/* <Typography variant="h6" noWrap component="div">
             Mini variant drawer
           </Typography> */}
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}>
+      <Drawer variant="permanent" open={open} 
+      // onMouseEnter={() => setOpen(true)}
+        // onMouseLeave={() => setOpen(false)}
+        >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
-        <Divider />
-        <List>
+        {/* <Divider /> */}
+        {/* <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -156,9 +169,48 @@ export  function SideTopBar() {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
-        <Divider />
-        <List>
+        </List> */}
+        <div>
+        <div>
+        <MenuIconDiv>
+        <AutoStoriesIcon  />
+        </MenuIconDiv>
+        <MenuIconDiv>
+
+        <GridViewIcon />
+        </MenuIconDiv>
+
+        <MenuIconDiv>
+        <PersonOutlineOutlinedIcon/>
+
+        </MenuIconDiv>
+        <MenuIconDiv>
+        <MessageOutlinedIcon/>
+          
+          </MenuIconDiv>
+          <MenuIconDiv>
+        <BookmarkBorderOutlinedIcon />
+          
+          </MenuIconDiv>
+          <MenuIconDiv>
+        <FolderOpenOutlinedIcon />
+          
+          </MenuIconDiv>
+          <MenuIconDiv>
+        <BarChartIcon/>
+        
+        
+          </MenuIconDiv>
+          </div>
+          <div>
+          <MenuIconDiv style={{marginTop:"70px"}}>
+        <LogoutIcon />
+          
+          </MenuIconDiv>
+          </div>
+          </div>
+        {/* <Divider /> */}
+        {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -181,12 +233,15 @@ export  function SideTopBar() {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
       {/* <MarketingContent /> */}
-      {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Typography paragraph>
+      {/* <Box component="main" sx={{ flexGrow: 2, p: 3 }}> */}
+        {/* <h1>dede</h1> */}
+        {/* <DrawerHeader /> */}
+      {/* <MarketingContent /> */}
+
+        {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
@@ -212,8 +267,8 @@ export  function SideTopBar() {
           tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </Box> */}
+        </Typography> */}
+      {/* </Box> */}
     </Box>
   );
 }

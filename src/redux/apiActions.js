@@ -4,8 +4,8 @@ import { marketContentAction } from "./slices/marketContentSlice";
 
 export const generateMarketingContentAction = (data) => async (dispatch) => {
     try {
-    //     var temp = 0.2
-    // const prompt = "fruit";
+        var temp = 0.2
+    const prompt = "what is a fruit?";
   
       let data = await axios({
         method: 'post',
@@ -21,7 +21,8 @@ export const generateMarketingContentAction = (data) => async (dispatch) => {
           "temperature": temp
       })
       });
-      dispatch(marketContentAction(data.data))
+      console.log("data=====>",data)
+      dispatch(marketContentAction(data.data.choices))
       
     } catch (e) {
       return console.error(e.message);
