@@ -27,7 +27,7 @@ import FolderOpenOutlinedIcon from '@mui/icons-material/FolderOpenOutlined';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import {MenuIconDiv} from './commonComponents'
+import {MenuIconDiv} from './commonStyledComponents'
 
 const drawerWidth = 240;
 

@@ -3,9 +3,18 @@ import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
-import { FlexDiv, MainH1, MainH3, MainHeader, SidebarMargin } from '../components/commonComponents';
+import {
+  FlexDiv,
+  MainH1,
+  MainH3,
+  MainHeader,
+  SidebarMargin,
+  ColorButton
+} from '../components/commonStyledComponents';
+import { SelectComponent } from '../components/commonUiElements/SelectComponent';
 import { ResultsCard } from '../components/ResultsCard';
 import { generateMarketingContentAction } from '../redux/apiActions';
+
 export const MarketingContent = () => {
   const dispatch = useDispatch();
   const marketData = useSelector(
@@ -18,7 +27,7 @@ export const MarketingContent = () => {
     //   sx={{ flexGrow: 1, marginTop: '56px', marginLeft: '58px' }}
     // >
     <div style={{ display: 'flex', height: '100%' }}>
-     <SidebarMargin/>
+      <SidebarMargin />
       <div
         style={{
           width: `calc(40vw - 65px)`,
@@ -28,43 +37,65 @@ export const MarketingContent = () => {
       >
         <MainHeader>
           <MainH1>Marketing Content</MainH1>
-          <div style={{padding:"8px"}}>
+          <div style={{ padding: '8px' }}>
             <MainH3>Description</MainH3>
             <TextField
-            // disabled={textFieldDisable}
-            id='outlined-basic'
-            // label='Citation'
-            // value={citation}
-            variant='outlined'
-            multiline
-            rows={4}
-            sx={{ width: '93%',
-            // borderRadius:"20px",
-            '& .MuiOutlinedInput-root': {
-                borderRadius: '20px',
-             } 
-            }}
-            // focused
-            inputProps={{
-              // minlength: 250,
-              //   maxLength: 500,
-              height: '70px',
-              
-            }}
-            // onChange={handleCitation}
-            // placeholder='Minimum of 50 characters and Maximum of 500 characters'
-          />
-          <MainH3>Advanced Settings</MainH3>
-          <FlexDiv>
-          <MainH3>Creativity</MainH3>
-          </FlexDiv>
+              // disabled={textFieldDisable}
+              id='outlined-basic'
+              // label='Citation'
+              // value={citation}
+              variant='outlined'
+              multiline
+              rows={4}
+              sx={{
+                width: '93%',
+                // borderRadius:"20px",
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '20px',
+                },
+              }}
+              // focused
+              inputProps={{
+                // minlength: 250,
+                //   maxLength: 500,
+                height: '70px',
+              }}
+              // onChange={handleCitation}
+              // placeholder='Minimum of 50 characters and Maximum of 500 characters'
+            />
+            <MainH3>Advanced Settings</MainH3>
+            <FlexDiv
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+              }}
+            >
+              <MainH3>Creativity</MainH3>
+              <SelectComponent />
+            </FlexDiv>
+
+            <FlexDiv
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+              }}
+            >
+              <MainH3>Outputs </MainH3>
+              <SelectComponent />
+            </FlexDiv>
           </div>
+          <FlexDiv style={{justifyContent:"center"}}>
+         <ColorButton>
+          Generate Now
+          </ColorButton>
+          </FlexDiv>
         </MainHeader>
       </div>
       <div style={{ width: '60vw', height: '100%' }}>
         <MainHeader>
           <MainH1>Choose from the results</MainH1>
-
         </MainHeader>
       </div>
       {/* </div> */}

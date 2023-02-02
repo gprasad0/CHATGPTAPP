@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
+import { Button } from '@mui/material';
 
 export const FlexDiv = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -42,4 +43,16 @@ export const MainH3 = styled('h3')(({ theme }) => ({
 
 export const SidebarMargin = styled('div')(({ theme }) => ({
   width: '65px', height: '100%'
+}));
+
+export const ColorButton = styled(Button)(({ theme }) => ({
+  color:"black",
+  fontWeight:600,
+  width:400,
+  padding:10,
+  borderRadius:"30px",
+  backgroundColor: "#FDD78C",
+  '&:hover': {
+    backgroundColor: "#FDD78C",
+  },
 }));
