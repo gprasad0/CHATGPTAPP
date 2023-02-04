@@ -6,6 +6,8 @@ import { MarketingContent } from './pages/MarketingContent';
 import { useTranslation } from 'react-i18next';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import { Route, Routes } from 'react-router-dom';
+import { MainCardDashboard } from './pages/MainCardDashboard';
+import { LoginPage } from './pages/Login';
 
 function App() {
   const theme = useTheme();
@@ -15,7 +17,9 @@ console.log("theme=====>",theme)
       <SideTopBar />
       <Routes>
         <Route path='/' element={<MarketingContent />} />
-        {/* <Route path='/home' element={<Sample2 />} /> */}
+        <Route path='/home' element={<MainCardDashboard />} />
+        <Route path='/login' element={<LoginPage />} />
+        
       </Routes>
     </>
   );

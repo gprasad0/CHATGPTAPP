@@ -2,6 +2,7 @@ import { Calculate } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   FlexDiv,
@@ -9,41 +10,65 @@ import {
   MainH3,
   MainHeader,
   SidebarMargin,
-  ColorButton
+  ColorButton,
+  MainPaper
 } from '../components/commonStyledComponents';
 import { SelectComponent } from '../components/commonUiElements/SelectComponent';
 import { ResultsCard } from '../components/ResultsCard';
 import { generateMarketingContentAction } from '../redux/apiActions';
+import { getArray } from '../helperFunctions/commonHelperFunctions';
+import { useTranslation } from "react-i18next";
+import { PlaceHolder } from '../components/commonUiElements/PlaceHolder';
+
 
 export const MarketingContent = () => {
+  const { t, i18n } = useTranslation();
+
+  const [description, setDescription] = useState('');
+  const [creativity, setCreativity] = useState('');
+  const [outputs, setoutputs] = useState(0);
   const dispatch = useDispatch();
   const marketData = useSelector(
     (state) => state.marketContent.marketContentData
   );
   console.log('marketData==>', marketData);
+
+  const handleDescription = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleSelect = (value, type) => {
+    if (type == 'creativity') {
+    console.log("value",value)
+
+      setCreativity(value);
+    } else {
+      setoutputs(value);
+    }
+  };
+
   return (
-    // <Box
-    //   component='main'
-    //   sx={{ flexGrow: 1, marginTop: '56px', marginLeft: '58px' }}
-    // >
-    <div style={{ display: 'flex', height: '100%' }}>
+    <MainPaper >
       <SidebarMargin />
       <div
         style={{
           width: `calc(40vw - 65px)`,
           height: '100%',
-          background: '#F2F2F2',
+          background: 'rgb(242, 242, 242)',
         }}
       >
-        <MainHeader>
-          <MainH1>Marketing Content</MainH1>
+        <MainHeader style={{ background: 'rgb(242, 242, 242)' }}>
+          <MainH1>
+          {t("marketing_content")}
+            {/* Marketing Content */}
+            </MainH1>
           <div style={{ padding: '8px' }}>
-            <MainH3>Description</MainH3>
+            <MainH3> {t("description")}</MainH3>
             <TextField
               // disabled={textFieldDisable}
               id='outlined-basic'
               // label='Citation'
-              // value={citation}
+              value={description}
               variant='outlined'
               multiline
               rows={4}
@@ -60,10 +85,10 @@ export const MarketingContent = () => {
                 //   maxLength: 500,
                 height: '70px',
               }}
-              // onChange={handleCitation}
+              onChange={(value) => handleDescription(value)}
               // placeholder='Minimum of 50 characters and Maximum of 500 characters'
             />
-            <MainH3>Advanced Settings</MainH3>
+            <MainH3 style={{ marginTop: '26px' }}> {t("advancedSettings")}</MainH3>
             <FlexDiv
               style={{
                 display: 'flex',
@@ -71,8 +96,12 @@ export const MarketingContent = () => {
                 justifyContent: 'space-around',
               }}
             >
-              <MainH3>Creativity</MainH3>
-              <SelectComponent />
+              <MainH3>{t("creativity")}</MainH3>
+              <SelectComponent
+                data={getArray('creativity')}
+                handleSelect={handleSelect}
+                type='creativity'
+              />
             </FlexDiv>
 
             <FlexDiv
@@ -82,78 +111,34 @@ export const MarketingContent = () => {
                 justifyContent: 'space-around',
               }}
             >
-              <MainH3>Outputs </MainH3>
-              <SelectComponent />
+              <MainH3>{t("outputs")} </MainH3>
+              <SelectComponent
+                data={getArray('outputs')}
+                handleSelect={handleSelect}
+                type='outputs'
+              />
             </FlexDiv>
           </div>
-          <FlexDiv style={{justifyContent:"center"}}>
-         <ColorButton>
-          Generate Now
-          </ColorButton>
+          <FlexDiv style={{ justifyContent: 'center' }}>
+            <ColorButton
+              onClick={() => dispatch(generateMarketingContentAction(description,creativity,outputs))}
+            >
+             {t("generateButton")}
+            </ColorButton>
           </FlexDiv>
         </MainHeader>
       </div>
       <div style={{ width: '60vw', height: '100%' }}>
         <MainHeader>
-          <MainH1>Choose from the results</MainH1>
+          <MainH1>{t("chooseResults")}</MainH1>
+          <div>
+            {marketData.length > 0 ? <> {marketData.map((data) => (
+              <ResultsCard marketContent={data.text} />
+            ))}</> : <PlaceHolder />}
+           
+          </div>
         </MainHeader>
       </div>
-      {/* </div> */}
-      {/* <div> */}
-      {/* <div style={{ width: '40vw', background: '#cbc7c7',padding:"3px" }}>
-          <h1 style={{}}>GENERATE MARKETING CONTENT</h1>
-          <div>Description</div>
-          <TextField
-            // disabled={textFieldDisable}
-            id='outlined-basic'
-            // label='Citation'
-            // value={citation}
-            variant='outlined'
-            multiline
-            rows={8}
-            sx={{ width: '85%',borderRadius:"10px",'& .MuiOutlinedInput-root': {
-                borderRadius: '20px',
-             } }}
-            // focused
-            inputProps={{
-              // minlength: 250,
-              //   maxLength: 500,
-              height: '70px',
-              
-            }}
-            // onChange={handleCitation}
-            // placeholder='Minimum of 50 characters and Maximum of 500 characters'
-          />
-          <div>Advanced Settings</div>
-          <select name='cars' id='cars'>
-            <option value='volvo'>Volvo</option>
-            <option value='saab'>Saab</option>
-            <option value='mercedes'>Mercedes</option>
-            <option value='audi'>Audi</option>
-          </select>
-          <div>Creativity</div>
-
-          <div>Outputs</div>
-          
-          <Button
-          variant='contained'
-          sx={{ background: '#FDD78C',color:"black"}}
-          onClick = {() => dispatch(generateMarketingContentAction())}
-        >
-          Generate Now
-        </Button>
-        </div> */}
-      {/* <div style={{ width: '60vw',height:"60vh" }}>
-          <h1 style={{}}>Choose from the results</h1>
-          <div style={{ }}>
-              
-            {marketData.map((data) => (
-              <ResultsCard marketContent={data.text} />
-            ))}
-          </div>
-        </div> */}
-      {/* </div> */}
-    </div>
-    // </Box>
+    </MainPaper>
   );
 };

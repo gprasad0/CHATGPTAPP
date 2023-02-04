@@ -1,3 +1,12 @@
 {
-    "react" : "React Spanish"
-}
+    "marketing_content": "Contenido de marketing",
+    "description": "Descripción",
+    "advancedSettings": "Ajustes avanzados",
+    "creativity": "Creativity",
+    "outputs": "Creatividad",
+    "generateButton": "GENERAR AHORA",
+    "chooseResults": "Elige entre los resultados",
+  "describe" : "Describa lo que necesita en la descripción y presione el botón generar para obtener resultados"
+
+  }
+  

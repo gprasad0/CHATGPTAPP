@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  marketContentData : [" frfefefeffef frfefefeffef frfefefeffef frfefefeffef frfefefeffef frfefefeffef frfefefeffef","efefeeffefe"]
+  marketContentData : []
 }
 
 export const marketContentSlice = createSlice({

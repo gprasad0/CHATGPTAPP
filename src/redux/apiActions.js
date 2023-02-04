@@ -2,10 +2,11 @@ import axios from "axios";
 import { marketContentAction } from "./slices/marketContentSlice";
 
 
-export const generateMarketingContentAction = (data) => async (dispatch) => {
+export const generateMarketingContentAction = (prompt,temp,outputs) => async (dispatch) => {
+  console.log("prompt,temp,outputs==>",prompt,temp,outputs)
     try {
         var temp = 0.2
-    const prompt = "what is a fruit?";
+    // const prompt = "what is a fruit?";
   
       let data = await axios({
         method: 'post',
@@ -18,7 +19,8 @@ export const generateMarketingContentAction = (data) => async (dispatch) => {
           "model": "text-davinci-003",
           "prompt": prompt,
           "max_tokens": 90,
-          "temperature": temp
+          "temperature": temp,
+          "n":outputs
       })
       });
       console.log("data=====>",data)

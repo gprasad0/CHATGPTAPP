@@ -28,6 +28,8 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import {MenuIconDiv} from './commonStyledComponents'
+import {TopBar} from "../components/TopBar";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -102,6 +104,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export  function SideTopBar() {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -116,29 +119,14 @@ export  function SideTopBar() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{background:"#f7f6fb",boxShadow:"none"}}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <MenuIcon sx={{color:"#4723d9"}}  onClick={handleDrawerOpen} />
-          
-          {/* <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
-          </Typography> */}
-        </Toolbar>
+       <TopBar handleDrawerOpen = {handleDrawerOpen}/>
       </AppBar>
+      
+
+      {/* <AppBar1 handleDrawerOpen = {handleDrawerOpen}/> */}
       <Drawer variant="permanent" open={open} 
-      // onMouseEnter={() => setOpen(true)}
-        // onMouseLeave={() => setOpen(false)}
+      onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
         >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -172,15 +160,15 @@ export  function SideTopBar() {
         </List> */}
         <div>
         <div>
-        <MenuIconDiv>
+        <MenuIconDiv onClick={() => navigate("/")}>
         <AutoStoriesIcon  />
         </MenuIconDiv>
-        <MenuIconDiv>
+        <MenuIconDiv onClick={() => navigate("/home")}>
 
         <GridViewIcon />
         </MenuIconDiv>
 
-        <MenuIconDiv>
+        <MenuIconDiv onClick={() => navigate("/login")}>
         <PersonOutlineOutlinedIcon/>
 
         </MenuIconDiv>

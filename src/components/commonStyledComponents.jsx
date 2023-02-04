@@ -2,6 +2,12 @@ import * as React from 'react';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
 
+
+export const MainPaper = styled('div')(({ theme }) => ({
+  display: 'flex',
+  height: '100%'
+}));
+
 export const FlexDiv = styled('div')(({ theme }) => ({
   display: 'flex',
 }));
@@ -9,8 +15,13 @@ export const FlexDiv = styled('div')(({ theme }) => ({
 export const IconDiv = styled('div')(({ theme }) => ({
   display: 'flex',
   borderRight: `1px solid ${theme.custom.borderColor}`,
-  padding: '2px',
+  padding: '8px',
   color: 'grey',
+  alignItems:'center',
+  cursor:'pointer',
+  ':hover': {
+    color:'#1f7cd8'
+  }
 }));
 
 export const MenuIconDiv = styled('div')(({ theme, open }) => ({
@@ -33,7 +44,8 @@ export const MainHeader = styled('div')(({ theme }) => ({
 
 export const MainH1 = styled('h1')(({ theme }) => ({
   display:"flex",
-  justifyContent:"center"
+  justifyContent:"center",
+  marginTop:"88px"
 }));
 
 export const MainH3 = styled('h3')(({ theme }) => ({
@@ -48,9 +60,10 @@ export const SidebarMargin = styled('div')(({ theme }) => ({
 export const ColorButton = styled(Button)(({ theme }) => ({
   color:"black",
   fontWeight:600,
-  width:400,
+  width:600,
   padding:10,
   borderRadius:"30px",
+  marginTop:"140px",
   backgroundColor: "#FDD78C",
   '&:hover': {
     backgroundColor: "#FDD78C",

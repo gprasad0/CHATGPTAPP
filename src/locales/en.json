@@ -1,3 +1,10 @@
 {
-    "react" : "React"
+  "marketing_content": "Marketing Content",
+  "description": "Description",
+  "advancedSettings": "Advanced Settings",
+  "creativity": "Creativity",
+  "outputs": "Outputs",
+  "generateButton": "GENERATE NOW",
+  "chooseResults": "Choose from the results",
+  "describe" : "Please describe what you need in the description and hit GENERATE button to get results"
 }
