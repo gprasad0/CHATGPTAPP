@@ -61,10 +61,10 @@ export const TopBar = ({ handleDrawerOpen }) => {
             <MenuIcon />
           </IconButton> */}
         <div style={{ marginLeft: '50px' }}>
-          <MenuIcon
+          {/* <MenuIcon
             sx={{ color: '#4723d9', cursor: 'pointer' }}
             onClick={handleDrawerOpen}
-          />
+          /> */}
         </div>
         <div style={{ color: 'black' }}>
           <FormControl sx={{ m: 1, minWidth: 100 }}>

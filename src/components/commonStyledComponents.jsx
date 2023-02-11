@@ -26,7 +26,7 @@ export const IconDiv = styled('div')(({ theme }) => ({
 
 export const MenuIconDiv = styled('div')(({ theme, open }) => ({
   padding: '15px 20px',
-  // display: 'flex',
+  display: 'flex',
   // justifyContent: open ? 'initial' : 'center',
   cursor: 'pointer',
   color: '#afa5d9',
@@ -35,6 +35,11 @@ export const MenuIconDiv = styled('div')(({ theme, open }) => ({
     borderLeft: '2px solid white',
   },
   // margin:"20px 0"
+}));
+
+export const SideBarText = styled('div')(({ theme, open }) => ({
+  opacity: open ? 1 : 0 ,
+  marginLeft:"15px"
 }));
 
 

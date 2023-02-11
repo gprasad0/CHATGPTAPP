@@ -27,11 +27,12 @@ import FolderOpenOutlinedIcon from '@mui/icons-material/FolderOpenOutlined';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import {MenuIconDiv} from './commonStyledComponents'
-import {TopBar} from "../components/TopBar";
-import { useNavigate } from "react-router-dom";
+import { MenuIconDiv, SideBarText } from './commonStyledComponents';
+import { TopBar } from '../components/TopBar';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -40,7 +41,7 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
-  background:'#4723d9',
+  background: '#4723d9',
 });
 
 const closedMixin = (theme) => ({
@@ -49,7 +50,7 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  background:'#4723d9',
+  background: '#4723d9',
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
@@ -71,38 +72,38 @@ const AppBar = styled(MuiAppBar, {
   // zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen
+    duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-
+      duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    background:"#4723d9",
-    ...(open && {
-      ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
-    }),
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
+  background: '#4723d9',
+  ...(open && {
+    ...openedMixin(theme),
+    '& .MuiDrawer-paper': openedMixin(theme),
   }),
-);
+  ...(!open && {
+    ...closedMixin(theme),
+    '& .MuiDrawer-paper': closedMixin(theme),
+  }),
+}));
 
-export  function SideTopBar() {
+export function SideTopBar() {
+  const { t, i18n } = useTranslation();
   const theme = useTheme();
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
@@ -118,20 +119,29 @@ export  function SideTopBar() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} sx={{background:"#f7f6fb",boxShadow:"none"}}>
-       <TopBar handleDrawerOpen = {handleDrawerOpen}/>
+      <AppBar
+        position='fixed'
+        open={open}
+        sx={{ background: '#f7f6fb', boxShadow: 'none' }}
+      >
+        <TopBar handleDrawerOpen={handleDrawerOpen} />
       </AppBar>
-      
 
       {/* <AppBar1 handleDrawerOpen = {handleDrawerOpen}/> */}
-      <Drawer variant="permanent" open={open} 
-      onMouseEnter={() => setOpen(true)}
+      <Drawer
+        variant='permanent'
+        open={open}
+        onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
-        >
+      >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
+          {/* <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
+          </IconButton> */}
         </DrawerHeader>
         {/* <Divider /> */}
         {/* <List>
@@ -159,44 +169,46 @@ export  function SideTopBar() {
           ))}
         </List> */}
         <div>
-        <div>
-        <MenuIconDiv onClick={() => navigate("/")}>
-        <AutoStoriesIcon  />
-        </MenuIconDiv>
-        <MenuIconDiv onClick={() => navigate("/home")}>
+          <div>
+            <MenuIconDiv
+              onClick={() => navigate('/')}
+            >
+              <AutoStoriesIcon />
+              <SideBarText open={open}>{t("content")}</SideBarText>
+            </MenuIconDiv>
+            <MenuIconDiv onClick={() => navigate('/home')}>
+              <GridViewIcon />
+              <SideBarText open={open}>{t("cards")}</SideBarText>
+            </MenuIconDiv>
 
-        <GridViewIcon />
-        </MenuIconDiv>
-
-        <MenuIconDiv onClick={() => navigate("/login")}>
-        <PersonOutlineOutlinedIcon/>
-
-        </MenuIconDiv>
-        <MenuIconDiv>
-        <MessageOutlinedIcon/>
-          
-          </MenuIconDiv>
-          <MenuIconDiv>
-        <BookmarkBorderOutlinedIcon />
-          
-          </MenuIconDiv>
-          <MenuIconDiv>
-        <FolderOpenOutlinedIcon />
-          
-          </MenuIconDiv>
-          <MenuIconDiv>
-        <BarChartIcon/>
-        
-        
-          </MenuIconDiv>
+            <MenuIconDiv onClick={() => navigate('/login')}>
+              <PersonOutlineOutlinedIcon />
+              <SideBarText open={open}>{t("user")}</SideBarText>
+            </MenuIconDiv>
+            <MenuIconDiv>
+              <MessageOutlinedIcon />
+              <SideBarText open={open}>{t("notes")}</SideBarText>
+            </MenuIconDiv>
+            <MenuIconDiv>
+              <BookmarkBorderOutlinedIcon />
+              <SideBarText open={open}>{t("bookmark")}</SideBarText>
+            </MenuIconDiv>
+            <MenuIconDiv>
+              <FolderOpenOutlinedIcon />
+              <SideBarText open={open}>{t("folder")}</SideBarText>
+            </MenuIconDiv>
+            <MenuIconDiv>
+              <BarChartIcon />
+              <SideBarText open={open}>{t("graph")}</SideBarText>
+            </MenuIconDiv>
           </div>
           <div>
-          <MenuIconDiv style={{marginTop:"70px"}}>
-        <LogoutIcon />
-          
-          </MenuIconDiv>
+            <MenuIconDiv style={{ marginTop: '70px' }}>
+              <LogoutIcon />
+              <SideBarText open={open}>{t("logout")}</SideBarText>
+            </MenuIconDiv>
           </div>
-          </div>
+        </div>
         {/* <Divider /> */}
         {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
@@ -225,11 +237,11 @@ export  function SideTopBar() {
       </Drawer>
       {/* <MarketingContent /> */}
       {/* <Box component="main" sx={{ flexGrow: 2, p: 3 }}> */}
-        {/* <h1>dede</h1> */}
-        {/* <DrawerHeader /> */}
+      {/* <h1>dede</h1> */}
+      {/* <DrawerHeader /> */}
       {/* <MarketingContent /> */}
 
-        {/* <Typography paragraph>
+      {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus

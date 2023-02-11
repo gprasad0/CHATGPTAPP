@@ -23,10 +23,10 @@ export const ResultsCard = ({ marketContent }) => {
   return (
     <div
       style={{
-        width: '70%',
+        width: '90%',
         border: '1px solid rgb(163 152 152)',
         margin: 'auto',
-        marginTop: '100px',
+        marginTop: '50px',
         // borderRadius: '4px',
       }}
     >

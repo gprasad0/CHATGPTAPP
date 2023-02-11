@@ -1,33 +1,42 @@
-import axios from "axios";
-import { marketContentAction } from "./slices/marketContentSlice";
+import axios from 'axios';
+import { marketContentAction } from './slices/marketContentSlice';
 
-
-export const generateMarketingContentAction = (prompt,temp,outputs) => async (dispatch) => {
-  console.log("prompt,temp,outputs==>",prompt,temp,outputs)
+export const generateMarketingContentAction =
+  (prompt, temp, outputs) => async (dispatch) => {
     try {
-        var temp = 0.2
-    // const prompt = "what is a fruit?";
-  
       let data = await axios({
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
-      },
-        url: 'https://api.openai.com/v1/completions',
-        data: JSON.stringify({
-          "model": "text-davinci-003",
-          "prompt": prompt,
-          "max_tokens": 90,
-          "temperature": temp,
-          "n":outputs
-      })
+          // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
+        },
+        url: 'http://localhost:3000/api/storyscape/compose',
+        data: {
+          prompt,
+          outputs,
+          temp,
+        },
       });
-      console.log("data=====>",data)
-      dispatch(marketContentAction(data.data.choices))
-      
+
+      dispatch(marketContentAction(data.data));
     } catch (e) {
       return console.error(e.message);
     }
   };
-  
+
+export const sample = (prompt, temp, outputs) => async (dispatch) => {
+  // let data = await axios.post("http://localhost:3000/api/getAllPost",{data:"data123??"})
+  let data = await axios({
+    method: 'post',
+    url: 'http://localhost:3000/api/getAllPost',
+    headers: {
+      Accept: 'application/json',
+      // 'Authorization': 'Bearer ' + credentials.t
+    },
+    data: {
+      firstName: 'Fred',
+      lastName: 'Flintstone',
+    },
+  });
+  console.log('dataa===>', data);
+};

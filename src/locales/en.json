@@ -6,5 +6,13 @@
   "outputs": "Outputs",
   "generateButton": "GENERATE NOW",
   "chooseResults": "Choose from the results",
-  "describe" : "Please describe what you need in the description and hit GENERATE button to get results"
+  "describe": "Please describe what you need in the description and hit GENERATE button to get results",
+  "content": "Content",
+  "cards": "Cards",
+  "user": "User",
+  "notes": "Notes",
+  "bookmark": "Bookmark",
+  "folder": "Folder",
+  "graph": "Graph",
+  "logout": "Logout"
 }

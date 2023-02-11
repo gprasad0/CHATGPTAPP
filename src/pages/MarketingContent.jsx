@@ -2,7 +2,7 @@ import { Calculate } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   FlexDiv,
@@ -15,7 +15,7 @@ import {
 } from '../components/commonStyledComponents';
 import { SelectComponent } from '../components/commonUiElements/SelectComponent';
 import { ResultsCard } from '../components/ResultsCard';
-import { generateMarketingContentAction } from '../redux/apiActions';
+import { generateMarketingContentAction,sample } from '../redux/apiActions';
 import { getArray } from '../helperFunctions/commonHelperFunctions';
 import { useTranslation } from "react-i18next";
 import { PlaceHolder } from '../components/commonUiElements/PlaceHolder';
@@ -36,6 +36,10 @@ export const MarketingContent = () => {
   const handleDescription = (e) => {
     setDescription(e.target.value);
   };
+
+  useEffect(()=>{
+    dispatch(sample())
+  },[])
 
   const handleSelect = (value, type) => {
     if (type == 'creativity') {
@@ -129,6 +133,7 @@ export const MarketingContent = () => {
         </MainHeader>
       </div>
       <div style={{ width: '60vw', height: '100%' }}>
+        <div style={{height:"98vh",overflow:"scroll"}}>
         <MainHeader>
           <MainH1>{t("chooseResults")}</MainH1>
           <div>
@@ -138,6 +143,7 @@ export const MarketingContent = () => {
            
           </div>
         </MainHeader>
+        </div>
       </div>
     </MainPaper>
   );
