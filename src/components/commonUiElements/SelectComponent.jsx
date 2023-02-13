@@ -4,8 +4,11 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const SelectComponent = ({ data, handleSelect, type }) => {
+  const { t, i18n } = useTranslation();
+
   const [inputData, setInputData] = useState('');
 
   const handleChange = (e) => {
@@ -25,7 +28,7 @@ export const SelectComponent = ({ data, handleSelect, type }) => {
         {data.map((selectData, i) => {
           return (
             <MenuItem key={`${selectData}+${i}`} value={selectData}>
-              {selectData}
+              {t(selectData)}
             </MenuItem>
           );
         })}

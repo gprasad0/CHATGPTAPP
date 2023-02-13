@@ -14,5 +14,15 @@
   "bookmark": "Bookmark",
   "folder": "Folder",
   "graph": "Graph",
-  "logout": "Logout"
+  "logout": "Logout",
+  "High": "High",
+  "Medium": "Medium",
+  "Low": "Low",
+  "socialMedia": "Social Media",
+  "contentCreation": "Content Creation",
+  "contentCorrection": "Content Correction",
+  "startUp": "Start-up",
+  "mathSolver": "Math Solver",
+  "university": "University and Job Application",
+  "langTranslation": "Langugage Translation"
 }
