@@ -21,6 +21,8 @@ export const mainCardsHeading = () => {
     'mathSolver',
     'university',
     'langTranslation',
+   
+
   ];
 };
 
@@ -52,12 +54,12 @@ export const mainCardsButton = () => {
       'Geometry Problems',
     ],
     university: [
-      'Resume Wriring',
+      'Resume Wriring',"Interview Preparation",
       'Cover Letter Writing',
       'Personal Statement Writing',
       "Scholarship Essay Writing",
       "College Admissions Essay Writing",
-      "Interview Preparation"
+      
     ],
     langTranslation: [
       'Document Translation',

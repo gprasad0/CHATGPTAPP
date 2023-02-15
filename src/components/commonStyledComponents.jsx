@@ -5,9 +5,9 @@ import { Button } from '@mui/material';
 export const MainPaper = styled('div')(({ theme }) => ({
   display: 'flex',
   height: '100%',
-  [theme.breakpoints.down('md')]: {
-    flexDirection: 'column',
-  },
+  // [theme.breakpoints.down('md')]: {
+  //   flexDirection: 'column',
+  // },
 }));
 
 export const FlexDiv = styled('div')(({ theme }) => ({
@@ -81,14 +81,27 @@ export const MainTopicCard = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  border: '1px solid lightgrey',
-  borderRadius: '10px',
+  border: '1px solid black',
+  // borderRadius: '10px',
   width: '100%',
   height: '150px',
   // margin: '20px',
   cursor:"pointer",
-  '&:hover': {
-    boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
-  },
+  // '&:hover': {
+  //   boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+  // },
   // boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
 }));
+
+export const SecondaryTopicCard = styled('div')(({ theme }) => ({
+  padding:"3px",
+  margin:"3px",
+  border:"1px solid lightgrey",
+  cursor:"pointer",
+  borderRadius: '4px',
+   '&:hover': {
+    boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+  },
+}));
+
+
