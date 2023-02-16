@@ -7,8 +7,16 @@ import {
   Paper,
   Button,
 } from '@mui/material';
+import { InstallDesktopTwoTone } from '@mui/icons-material';
 
 export const LoginPage = () => {
+
+  const handleLogin = () =>{
+    const googleAuth = () =>{
+      InstallDesktopTwoTone.open(`${import.meta.env.VITE_BACKEND_APP_URL}/auth/google/callback`,"_self")
+    }
+  }
+
   return (
     <div style={{ width: '100vw', height: '100%',background:"orange",display:"flex",justifyContent:"center",alignItems:"center" }}>
       <div style={{ padding: 10, width: '30vw', margin: '0 auto' }}>
@@ -34,6 +42,7 @@ export const LoginPage = () => {
                 fontWeight: 'bold',
                 marginLeft: '24px',
               }}
+              onClick={handleLogin}
             >
               LOGIN
             </h1>
