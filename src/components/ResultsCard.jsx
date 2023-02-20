@@ -59,7 +59,7 @@ export const ResultsCard = ({ marketContent }) => {
               alignItems: 'center',
               borderRight: '1px solid grey',
               width:"130px",
-              alignItems:"center",
+              // alignItems:"center",
               justifyContent:"space-around"
             }}
           >
