@@ -11,10 +11,11 @@ import { InstallDesktopTwoTone } from '@mui/icons-material';
 
 export const LoginPage = () => {
 
-  const handleLogin = () =>{
-    const googleAuth = () =>{
-      InstallDesktopTwoTone.open(`${import.meta.env.VITE_BACKEND_APP_URL}/auth/google/callback`,"_self")
-    }
+  const  handleLogin = () =>{
+    // const googleAuth = () =>{
+    //   InstallDesktopTwoTone.open(`${import.meta.env.VITE_BACKEND_APP_URL}/auth/google/callback`,"_self")
+    // }
+    window.open("http://localhost:3000/auth/google","_self")
   }
 
   return (
@@ -44,7 +45,7 @@ export const LoginPage = () => {
               }}
               onClick={handleLogin}
             >
-              LOGIN
+              STORYSCAPE
             </h1>
             <Grid item xs={12}>
               <TextField
@@ -69,7 +70,7 @@ export const LoginPage = () => {
 
             <Grid item xs={12}>
               <Button
-                // onClick={handleLogin}
+                onClick={handleLogin}
                 variant='contained'
                 sx={{ margin: '0 0 24px 16px' }}
               >
