@@ -18,6 +18,11 @@ export const LoginPage = () => {
     window.open("http://localhost:3000/auth/google","_self")
   }
 
+
+  const handleNormalLogin = () =>{
+    
+  }
+
   return (
     <div style={{ width: '100vw', height: '100%',background:"orange",display:"flex",justifyContent:"center",alignItems:"center" }}>
       <div style={{ padding: 10, width: '30vw', margin: '0 auto' }}>
@@ -75,6 +80,13 @@ export const LoginPage = () => {
                 sx={{ margin: '0 0 24px 16px' }}
               >
                 LOGIN
+              </Button>
+              <Button
+                onClick={handleNormalLogin}
+                variant='contained'
+                sx={{ margin: '0 0 24px 16px' }}
+              >
+                NORMAL LOGIN
               </Button>
             </Grid>
           </Grid>

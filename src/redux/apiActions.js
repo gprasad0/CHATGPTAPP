@@ -24,6 +24,29 @@ export const generateMarketingContentAction =
     }
   };
 
+  export const loginAction =
+  (prompt, temp, outputs) => async (dispatch) => {
+    try {
+      let data = await axios({
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
+        },
+        url: 'http://localhost:3000/api/storyscape/compose',
+        // data: {
+        //   prompt,
+        //   outputs,
+        //   temp,
+        // },
+      });
+
+      // dispatch(marketContentAction(data.data));
+    } catch (e) {
+      return console.error(e.message);
+    }
+  };
+
 export const sample = (prompt, temp, outputs) => async (dispatch) => {
   // let data = await axios.post("http://localhost:3000/api/getAllPost",{data:"data123??"})
   let data = await axios({
