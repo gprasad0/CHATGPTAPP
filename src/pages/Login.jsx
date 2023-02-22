@@ -8,9 +8,11 @@ import {
   Button,
 } from '@mui/material';
 import { InstallDesktopTwoTone } from '@mui/icons-material';
+import { loginAction } from '../redux/apiActions';
+import { useDispatch } from 'react-redux';
 
 export const LoginPage = () => {
-
+  const dispatch = useDispatch();
   const  handleLogin = () =>{
     // const googleAuth = () =>{
     //   InstallDesktopTwoTone.open(`${import.meta.env.VITE_BACKEND_APP_URL}/auth/google/callback`,"_self")
@@ -20,7 +22,7 @@ export const LoginPage = () => {
 
 
   const handleNormalLogin = () =>{
-    
+    dispatch(loginAction())
   }
 
   return (
