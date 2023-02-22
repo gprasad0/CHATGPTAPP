@@ -86,7 +86,7 @@ export const LoginPage = () => {
               <Button
                 onClick={handleNormalLogin}
                 variant='contained'
-                sx={{ margin: '0 0 24px 16px' }}
+                sx={{ marginLeft: '40px' }}
               >
                 NORMAL LOGIN
               </Button>

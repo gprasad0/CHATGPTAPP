@@ -33,7 +33,7 @@ export const generateMarketingContentAction =
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
-        url: 'http://localhost:3000/api/storyscape/compose',
+        url: 'http://localhost:3000/auth/signin',
         // data: {
         //   prompt,
         //   outputs,
