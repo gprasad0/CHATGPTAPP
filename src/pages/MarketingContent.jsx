@@ -15,7 +15,7 @@ import {
 } from '../components/commonStyledComponents';
 import { SelectComponent } from '../components/commonUiElements/SelectComponent';
 import { ResultsCard } from '../components/ResultsCard';
-import { generateMarketingContentAction,sample } from '../redux/apiActions';
+import { generateMarketingContentAction } from '../redux/apiActions';
 import { getArray } from '../helperFunctions/commonHelperFunctions';
 import { useTranslation } from "react-i18next";
 import { PlaceHolder } from '../components/commonUiElements/PlaceHolder';
@@ -38,7 +38,7 @@ export const MarketingContent = () => {
   };
 
   useEffect(()=>{
-    dispatch(sample())
+    // dispatch(sample())
   },[])
 
   const handleSelect = (value, type) => {

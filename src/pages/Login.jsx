@@ -8,7 +8,7 @@ import {
   Button,
 } from '@mui/material';
 import { InstallDesktopTwoTone } from '@mui/icons-material';
-import { loginAction } from '../redux/apiActions';
+import { loginAction, userRegistrationAction } from '../redux/apiActions';
 import { useDispatch } from 'react-redux';
 
 export const LoginPage = () => {
@@ -22,7 +22,10 @@ export const LoginPage = () => {
 
 
   const handleNormalLogin = () =>{
+    // dispatch(userRegistrationAction())
     dispatch(loginAction())
+
+    
   }
 
   return (
