@@ -14,6 +14,10 @@ export const FlexDiv = styled('div')(({ theme }) => ({
   display: 'flex',
 }));
 
+export const MarginDiv = styled('div')(({ theme }) => ({
+  margin:"20px 0"
+}));
+
 export const IconDiv = styled('div')(({ theme }) => ({
   display: 'flex',
   borderRight: `1px solid ${theme.custom.borderColor}`,
@@ -64,13 +68,13 @@ export const SidebarMargin = styled('div')(({ theme }) => ({
   height: '100%',
 }));
 
-export const ColorButton = styled(Button)(({ theme }) => ({
+export const ColorButton = styled(Button)(({ theme,width,marginTop }) => ({
   color: 'black',
   fontWeight: 600,
-  width: 600,
+  width: width,
   padding: 10,
   borderRadius: '30px',
-  marginTop: '140px',
+  marginTop: marginTop ? marginTop : '140px',
   backgroundColor: '#FDD78C',
   '&:hover': {
     backgroundColor: '#FDD78C',

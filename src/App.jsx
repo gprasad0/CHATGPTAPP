@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import reactLogo from './assets/react.svg';
 import axios from 'axios';
 import { SideTopBar } from './components/SideTopBar';
 import { MarketingContent } from './pages/MarketingContent';

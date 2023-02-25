@@ -125,6 +125,7 @@ export const MarketingContent = () => {
           </div>
           <FlexDiv style={{ justifyContent: 'center' }}>
             <ColorButton
+            width={600}
               onClick={() => dispatch(generateMarketingContentAction(description,creativity,outputs))}
             >
              {t("generateButton")}
