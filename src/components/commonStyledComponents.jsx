@@ -15,7 +15,7 @@ export const FlexDiv = styled('div')(({ theme }) => ({
 }));
 
 export const MarginDiv = styled('div')(({ theme }) => ({
-  margin:"20px 0"
+  margin: '20px 0',
 }));
 
 export const IconDiv = styled('div')(({ theme }) => ({
@@ -68,7 +68,7 @@ export const SidebarMargin = styled('div')(({ theme }) => ({
   height: '100%',
 }));
 
-export const ColorButton = styled(Button)(({ theme,width,marginTop }) => ({
+export const ColorButton = styled(Button)(({ theme, width, marginTop }) => ({
   color: 'black',
   fontWeight: 600,
   width: width,
@@ -90,7 +90,7 @@ export const MainTopicCard = styled('div')(({ theme }) => ({
   width: '100%',
   height: '150px',
   // margin: '20px',
-  cursor:"pointer",
+  cursor: 'pointer',
   // '&:hover': {
   //   boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
   // },
@@ -98,14 +98,21 @@ export const MainTopicCard = styled('div')(({ theme }) => ({
 }));
 
 export const SecondaryTopicCard = styled('div')(({ theme }) => ({
-  padding:"3px",
-  margin:"3px",
-  border:"1px solid lightgrey",
-  cursor:"pointer",
-  borderRadius: '4px',
-   '&:hover': {
+  height: '180px',
+  width: '20vw',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  margin: '10px',
+  padding: '10px',
+  color: 'black',
+  // borderRadius: '4px',
+  fontWeight: '600',
+  background: 'white',
+  border: '1px solid #dedede',
+  cursor: 'pointer',
+
+  '&:hover': {
     boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
   },
 }));
-
-

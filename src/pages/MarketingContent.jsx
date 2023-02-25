@@ -2,7 +2,7 @@ import { Calculate } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   FlexDiv,
@@ -11,15 +11,14 @@ import {
   MainHeader,
   SidebarMargin,
   ColorButton,
-  MainPaper
+  MainPaper,
 } from '../components/commonStyledComponents';
 import { SelectComponent } from '../components/commonUiElements/SelectComponent';
 import { ResultsCard } from '../components/ResultsCard';
 import { generateMarketingContentAction } from '../redux/apiActions';
 import { getArray } from '../helperFunctions/commonHelperFunctions';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { PlaceHolder } from '../components/commonUiElements/PlaceHolder';
-
 
 export const MarketingContent = () => {
   const { t, i18n } = useTranslation();
@@ -37,13 +36,13 @@ export const MarketingContent = () => {
     setDescription(e.target.value);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     // dispatch(sample())
-  },[])
+  }, []);
 
   const handleSelect = (value, type) => {
     if (type == 'creativity') {
-    console.log("value",value)
+      console.log('value', value);
 
       setCreativity(value);
     } else {
@@ -52,22 +51,22 @@ export const MarketingContent = () => {
   };
 
   return (
-    <MainPaper >
+    <MainPaper>
       <SidebarMargin />
       <div
         style={{
           width: `calc(40vw - 65px)`,
           height: '100%',
-          background: 'rgb(242, 242, 242)',
+          background: '#f9fafc',
         }}
       >
-        <MainHeader style={{ background: 'rgb(242, 242, 242)' }}>
+        <MainHeader style={{ background: '#f9fafc' }}>
           <MainH1>
-          {t("marketing_content")}
+            {t('marketing_content')}
             {/* Marketing Content */}
-            </MainH1>
+          </MainH1>
           <div style={{ padding: '8px' }}>
-            <MainH3> {t("description")}</MainH3>
+            <MainH3> {t('description')}</MainH3>
             <TextField
               // disabled={textFieldDisable}
               id='outlined-basic'
@@ -92,7 +91,10 @@ export const MarketingContent = () => {
               onChange={(value) => handleDescription(value)}
               // placeholder='Minimum of 50 characters and Maximum of 500 characters'
             />
-            <MainH3 style={{ marginTop: '26px' }}> {t("advancedSettings")}</MainH3>
+            <MainH3 style={{ marginTop: '26px' }}>
+              {' '}
+              {t('advancedSettings')}
+            </MainH3>
             <FlexDiv
               style={{
                 display: 'flex',
@@ -100,7 +102,7 @@ export const MarketingContent = () => {
                 justifyContent: 'space-around',
               }}
             >
-              <MainH3>{t("creativity")}</MainH3>
+              <MainH3>{t('creativity')}</MainH3>
               <SelectComponent
                 data={getArray('creativity')}
                 handleSelect={handleSelect}
@@ -115,7 +117,7 @@ export const MarketingContent = () => {
                 justifyContent: 'space-around',
               }}
             >
-              <MainH3>{t("outputs")} </MainH3>
+              <MainH3>{t('outputs')} </MainH3>
               <SelectComponent
                 data={getArray('outputs')}
                 handleSelect={handleSelect}
@@ -123,27 +125,53 @@ export const MarketingContent = () => {
               />
             </FlexDiv>
           </div>
+
+          <TextField
+            id='outlined-basic'
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                // borderRadius: '10px',
+                height: '30px',
+              },
+            }}
+          />
+
           <FlexDiv style={{ justifyContent: 'center' }}>
             <ColorButton
-            width={600}
-              onClick={() => dispatch(generateMarketingContentAction(description,creativity,outputs))}
+              width={500}
+              onClick={() =>
+                dispatch(
+                  generateMarketingContentAction(
+                    description,
+                    creativity,
+                    outputs
+                  )
+                )
+              }
             >
-             {t("generateButton")}
+              {t('generateButton')}
             </ColorButton>
           </FlexDiv>
         </MainHeader>
       </div>
+
       <div style={{ width: '60vw', height: '100%' }}>
-        <div style={{height:"98vh",overflow:"scroll"}}>
-        <MainHeader>
-          <MainH1>{t("chooseResults")}</MainH1>
-          <div>
-            {marketData.length > 0 ? <> {marketData.map((data) => (
-              <ResultsCard marketContent={data.text} />
-            ))}</> : <PlaceHolder />}
-           
-          </div>
-        </MainHeader>
+        <div style={{ height: '98vh', overflow: 'scroll' }}>
+          <MainHeader>
+            <MainH1>{t('chooseResults')}</MainH1>
+            <div>
+              {marketData.length > 0 ? (
+                <>
+                  {' '}
+                  {marketData.map((data) => (
+                    <ResultsCard marketContent={data.text} />
+                  ))}
+                </>
+              ) : (
+                <PlaceHolder />
+              )}
+            </div>
+          </MainHeader>
         </div>
       </div>
     </MainPaper>

@@ -31,7 +31,7 @@ export const LoginPage = () => {
   }
 
   return (
-    <div style={{ width: '100vw', height: '100%',background:"rgb(237 241 243)",display:"flex",justifyContent:"center",alignItems:"center" }}>
+    <div style={{ width: '100vw', height: '100%',background:"#f9fafc",display:"flex",justifyContent:"center",alignItems:"center" }}>
       <div style={{ padding: 10, width: '30vw', margin: '0 auto' }}>
         <Paper
           sx={{

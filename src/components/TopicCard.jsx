@@ -1,7 +1,6 @@
 import { mainCardsButton } from '../helperFunctions/commonHelperFunctions';
 import { MainTopicCard, SecondaryTopicCard } from './commonStyledComponents';
 import { useNavigate } from 'react-router-dom';
-
 export const TopicCard = ({ card }) => {
   const navigate = useNavigate();
   
