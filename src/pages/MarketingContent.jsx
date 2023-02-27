@@ -19,6 +19,8 @@ import { generateMarketingContentAction } from '../redux/apiActions';
 import { getArray } from '../helperFunctions/commonHelperFunctions';
 import { useTranslation } from 'react-i18next';
 import { PlaceHolder } from '../components/commonUiElements/PlaceHolder';
+import { InputsOnCard } from '../components/InputsOnCard';
+import { useSearchParams } from 'react-router-dom';
 
 export const MarketingContent = () => {
   const { t, i18n } = useTranslation();
@@ -26,6 +28,8 @@ export const MarketingContent = () => {
   const [description, setDescription] = useState('');
   const [creativity, setCreativity] = useState('');
   const [outputs, setoutputs] = useState(0);
+  const [searchParams] = useSearchParams();
+    console.log("searchParams",[...searchParams]); 
   const dispatch = useDispatch();
   const marketData = useSelector(
     (state) => state.marketContent.marketContentData
@@ -126,15 +130,9 @@ export const MarketingContent = () => {
             </FlexDiv>
           </div>
 
-          <TextField
-            id='outlined-basic'
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                // borderRadius: '10px',
-                height: '30px',
-              },
-            }}
-          />
+        
+
+          <InputsOnCard  type={[...searchParams][0]}/>
 
           <FlexDiv style={{ justifyContent: 'center' }}>
             <ColorButton

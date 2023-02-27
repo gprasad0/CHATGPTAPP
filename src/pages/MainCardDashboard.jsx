@@ -25,8 +25,13 @@ export const MainCardDashboard = () => {
     setSelectedCard(value)
   };
 
-  const handleSecondaryCard = () =>{
-    navigate("/")
+  const handleSecondaryCard = (card) =>{
+    // navigate("/")
+
+    navigate({
+      pathname: '/assistant',
+      search: `?${mainCard}=${card}`,
+    });
 
   }
 
@@ -89,7 +94,7 @@ export const MainCardDashboard = () => {
               {mainCardsButton()[mainCard].map((card) => {
                 return (
                   <SecondaryTopicCard
-                  onClick={handleSecondaryCard}
+                  onClick={() => handleSecondaryCard(card)}
                     style={{
                       
                       // boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',

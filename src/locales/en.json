@@ -24,5 +24,19 @@
   "startUp": "Start-up",
   "mathSolver": "Math Solver",
   "university": "University and Job Application",
-  "langTranslation": "Langugage Translation"
+  "langTranslation": "Langugage Translation",
+  "targetAudience": "Target Audience",
+  "typeOfPost": "Type of the Post",
+  "toneOfPost": "Tone of the Post",
+  "specificMessage": "Specific message to be included in the post",
+  "targetWordCount": "Target word count",
+  "keywords": "Keywords",
+  "contentCreated": "Content to be Created",
+  "buisnessInfo": "Business Information",
+  "problemToSolve": "Problem to be solved",
+  "personalInfo": "Personal information",
+  "targetInstitute": "Target institution or Company",
+  "sourceLang": "Source language",
+  "targetLang": "Target language",
+  "contentToTranslate": "Content to be translated"
 }

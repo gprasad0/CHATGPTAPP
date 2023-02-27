@@ -14,6 +14,12 @@ export const FlexDiv = styled('div')(({ theme }) => ({
   display: 'flex',
 }));
 
+export const InputSelectDiv = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent:"space-around",
+  margin:"10px 0px"
+}));
+
 export const MarginDiv = styled('div')(({ theme }) => ({
   margin: '20px 0',
 }));

@@ -68,3 +68,20 @@ export const mainCardsButton = () => {
     ],
   };
 };
+
+
+export const showInputs = () =>{
+
+ return{
+  'socialMedia' : ['targetAudience','typeOfPost','toneOfPost','specificMessage'],
+  'contentCreation' : ['targetAudience','toneOfPost','targetWordCount','keywords'],
+  'contentCorrection' : ['contentCreated'],
+  'startUp' : ['buisnessInfo'],
+  'mathSolver' : ['problemToSolve'],
+  'university' : ['personalInfo','targetInstitute'],
+  'langTranslation' : ['sourceLang','targetLang','contentToTranslate'],
+ }
+
+// return true;
+// return false;
+}
