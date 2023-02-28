@@ -1,90 +1,62 @@
 import { TextField } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import { InputSelectDiv } from './commonStyledComponents';
-import {showInputs} from "../helperFunctions/commonHelperFunctions";
-export const InputsOnCard = ({type}) => {
+import { showInputs } from '../helperFunctions/commonHelperFunctions';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+export const InputsOnCard = ({ type , handleMultiInputs}) => {
+  const { t, i18n } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const [inputValue, setInputValue] = useState({});
+  console.log(
+    'searchParams',
+    [...searchParams][0][0],
+    showInputs()[[...searchParams][0][0]]
+  ); // ▶ URLSearchParams {}
 
-    const [searchParams] = useSearchParams();
-    console.log("searchParams",[...searchParams][0][0],showInputs()[[...searchParams][0][0]]); // ▶ URLSearchParams {}
+  useEffect(() => {
+    let aiDescription = showInputs()[[...searchParams][0][0]];
+    let data = {};
+    aiDescription.forEach((d) => {
+      data[d] = '';
+    });
+    setInputValue(data);
+  }, []);
 
+  const handleMultiInput = (input, value) => {
+    setInputValue((prevState) => {
+      return { ...prevState, [input]: value.target.value };
+    });
+  };
+
+  useEffect(() => {
+    handleMultiInputs(inputValue);
+  }, [inputValue]);
 
   return (
     <>
-      {/* <InputSelectDiv >
-        <h4 style={{width:"40%"}}>Target Audience</h4>
-        <TextField
-          id='outlined-basic'
-          placeholder= 'eg:age range,interests'
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              // borderRadius: '10px',
-              height: '30px',
-            },
-          }}
-        />
-      </InputSelectDiv> */}
+      {showInputs()[[...searchParams][0][0]].map((input) => {
+        return (
+          <InputSelectDiv>
+            <h4 style={{ width: '40%'}}>{t(input)}</h4>
+            <TextField
+              id='outlined-basic'
+              //   value={description}
+              onChange={(value) => handleMultiInput(input, value)}
+              placeholder={t(input + 'Ex')}
+              sx={{
+                width: '12vw',
 
-      {
-          showInputs()[[...searchParams][0][0]].map(input=>{
-              return(
-                <InputSelectDiv >
-                <h4 style={{width:"40%"}}>{input}</h4>
-                <TextField
-                  id='outlined-basic'
-                  placeholder= 'eg:age range,interests'
-                  sx={{
-                    '& .MuiOutlinedInput-root': {
-                      // borderRadius: '10px',
-                      height: '30px',
-                    },
-                  }}
-                />
-              </InputSelectDiv>
-              )
-          })
-      }
-      {/* <InputSelectDiv >
-        <h4 style={{width:"40%"}}>Tone</h4>
-        <TextField
-          id='outlined-basic'
-          placeholder= 'eg:professional,casual'
-
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              // borderRadius: '10px',
-              height: '30px',
-            },
-          }}
-        />
-      </InputSelectDiv>
-      <InputSelectDiv >
-        <h4 style={{width:"40%"}}>Target word count</h4>
-        <TextField
-          id='outlined-basic'
-          placeholder= 'eg:100'
-
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              // borderRadius: '10px',
-              height: '30px',
-            },
-          }}
-        />
-      </InputSelectDiv>
-      <InputSelectDiv >
-        <h4 style={{width:"40%"}}>Keywords</h4>
-        <TextField
-          id='outlined-basic'
-          placeholder= 'eg:search engine optimization'
-
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              // borderRadius: '10px',
-              height: '30px',
-            },
-          }}
-        />
-      </InputSelectDiv> */}
+                '& .MuiOutlinedInput-root': {
+                  // borderRadius: '10px',
+                  fontSize: '12px',
+                  height: '30px',
+                },
+              }}
+            />
+          </InputSelectDiv>
+        );
+      })}
     </>
   );
 };

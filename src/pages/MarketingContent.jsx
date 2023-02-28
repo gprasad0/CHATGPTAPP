@@ -12,6 +12,7 @@ import {
   SidebarMargin,
   ColorButton,
   MainPaper,
+  InputSelectDiv,
 } from '../components/commonStyledComponents';
 import { SelectComponent } from '../components/commonUiElements/SelectComponent';
 import { ResultsCard } from '../components/ResultsCard';
@@ -29,12 +30,13 @@ export const MarketingContent = () => {
   const [creativity, setCreativity] = useState('');
   const [outputs, setoutputs] = useState(0);
   const [searchParams] = useSearchParams();
+  const [multiInput,setMultiInput] = useState({})
     console.log("searchParams",[...searchParams]); 
   const dispatch = useDispatch();
   const marketData = useSelector(
     (state) => state.marketContent.marketContentData
   );
-  console.log('marketData==>', marketData);
+  console.log('marketData==>', [...searchParams][0][0]);
 
   const handleDescription = (e) => {
     setDescription(e.target.value);
@@ -54,6 +56,10 @@ export const MarketingContent = () => {
     }
   };
 
+  const handleMultiInputs = (data) =>{
+    setMultiInput(data)
+  }
+
   return (
     <MainPaper>
       <SidebarMargin />
@@ -64,13 +70,13 @@ export const MarketingContent = () => {
           background: '#f9fafc',
         }}
       >
-        <MainHeader style={{ background: '#f9fafc' }}>
+        <MainHeader style={{ background: '#f9fafc',paddingLeft:"18px" }}>
           <MainH1>
-            {t('marketing_content')}
+            {[...searchParams][0][1]}
             {/* Marketing Content */}
           </MainH1>
           <div style={{ padding: '8px' }}>
-            <MainH3> {t('description')}</MainH3>
+            <MainH3 style={{marginBottom:"10px"}}> {t('description')}</MainH3>
             <TextField
               // disabled={textFieldDisable}
               id='outlined-basic'
@@ -83,7 +89,7 @@ export const MarketingContent = () => {
                 width: '93%',
                 // borderRadius:"20px",
                 '& .MuiOutlinedInput-root': {
-                  borderRadius: '20px',
+                  borderRadius: '10px',
                 },
               }}
               // focused
@@ -99,40 +105,33 @@ export const MarketingContent = () => {
               {' '}
               {t('advancedSettings')}
             </MainH3>
-            <FlexDiv
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-around',
-              }}
+            <InputSelectDiv
+              
             >
-              <MainH3>{t('creativity')}</MainH3>
+              <h4 style={{ width: '40%'  }}>{t('creativity')}</h4>
               <SelectComponent
                 data={getArray('creativity')}
                 handleSelect={handleSelect}
                 type='creativity'
               />
-            </FlexDiv>
+            </InputSelectDiv>
 
-            <FlexDiv
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-around',
-              }}
+            <InputSelectDiv
+              
             >
-              <MainH3>{t('outputs')} </MainH3>
+              <h4 style={{ width: '40%'  }}>{t('outputs')} </h4>
               <SelectComponent
                 data={getArray('outputs')}
                 handleSelect={handleSelect}
                 type='outputs'
               />
-            </FlexDiv>
+            </InputSelectDiv>
+            <InputsOnCard  type={[...searchParams][0]} handleMultiInputs = {handleMultiInputs}/>
           </div>
 
         
 
-          <InputsOnCard  type={[...searchParams][0]}/>
+          
 
           <FlexDiv style={{ justifyContent: 'center' }}>
             <ColorButton
@@ -142,7 +141,8 @@ export const MarketingContent = () => {
                   generateMarketingContentAction(
                     description,
                     creativity,
-                    outputs
+                    outputs,
+                    multiInput
                   )
                 )
               }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { marketContentAction } from './slices/marketContentSlice';
 
 export const generateMarketingContentAction =
-  (prompt, temp, outputs) => async (dispatch) => {
+  (prompt, temp, outputs, multiInput) => async (dispatch) => {
     try {
       let data = await axios({
         method: 'post',
@@ -15,6 +15,7 @@ export const generateMarketingContentAction =
           prompt,
           outputs,
           temp,
+          multiInput
         },
       });
 
@@ -63,6 +64,26 @@ export const generateMarketingContentAction =
         //   outputs,
         //   temp,
         // },
+      });
+
+      // dispatch(marketContentAction(data.data));
+    } catch (e) {
+      return console.error(e.message);
+    }
+  };
+
+  export const signUpAction =
+  (data) => async (dispatch) => {
+    console.log("data====>?",data)
+    try {
+      let data = await axios({
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
+        },
+        url: 'http://localhost:3000/auth/signup',
+        data
       });
 
       // dispatch(marketContentAction(data.data));

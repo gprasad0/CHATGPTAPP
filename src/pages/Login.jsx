@@ -12,9 +12,11 @@ import googleImg from "../assets/google.png";
 import { loginAction, userRegistrationAction } from '../redux/apiActions';
 import { useDispatch } from 'react-redux';
 import { ColorButton,MarginDiv } from '../components/commonStyledComponents';
+import SignUpModal from '../components/SignUpModal';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
+  const [signUp,setSignUp] = useState(false)
   const  handleLogin = () =>{
     // const googleAuth = () =>{
     //   InstallDesktopTwoTone.open(`${import.meta.env.VITE_BACKEND_APP_URL}/auth/google/callback`,"_self")
@@ -28,6 +30,14 @@ export const LoginPage = () => {
     dispatch(loginAction())
 
     
+  }
+
+  const closeModal = () => {
+    setSignUp(false)
+  }
+
+  const handleSignUp = () =>{
+    setSignUp(true)
   }
 
   return (
@@ -79,7 +89,7 @@ export const LoginPage = () => {
             
               
               <ColorButton
-            width={200}
+            width={100}
             marginTop={20}
               onClick={handleLogin}
             >
@@ -113,14 +123,20 @@ export const LoginPage = () => {
                  position: "relative",
                  padding:"10px"
               }} 
-              // onClick={googleAuth}
+              onClick={handleLogin}
               >
-						<img style= {{width:"26px",marginRight:"14px"}} src={googleImg} alt="google icon" />
-						<span>Sing in with Google</span>
+						<img style= {{width:"24px",marginRight:"14px"}} src={googleImg} alt="google icon" />
+						<span>Sign in with Google</span>
 					</button>
             
+          <MarginDiv style={{marginTop:"5px",marginBottom:"10px"}}>New Here? <span style={{color: 'rgb(244 162 0)',fontWeight:800,cursor:"pointer"}} onClick={handleSignUp}>Sign Up</span></MarginDiv>
+
           {/* </Grid> */}
         </Paper>
+        {signUp && <SignUpModal openDialog={signUp}  closeDialog={closeModal}/>}
+        
+
+        {/* openDialog={submitModal}  closeDialog={closeModal} */}
 
         {/* <Snackbar
           open={errorModal}

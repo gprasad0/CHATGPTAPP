@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
+import Modal from '@mui/material/Modal';
 
 export const MainPaper = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -14,10 +15,20 @@ export const FlexDiv = styled('div')(({ theme }) => ({
   display: 'flex',
 }));
 
+export const FlexDivColumn = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center'
+}));
+
+
+
 export const InputSelectDiv = styled('div')(({ theme }) => ({
   display: 'flex',
-  justifyContent:"space-around",
-  margin:"10px 0px"
+  justifyContent:"flex-start",
+  margin:"10px 0px",
+  alignItems:"center"
 }));
 
 export const MarginDiv = styled('div')(({ theme }) => ({
@@ -121,4 +132,10 @@ export const SecondaryTopicCard = styled('div')(({ theme }) => ({
   '&:hover': {
     boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
   },
+}));
+
+
+
+export const InputMarginTopDiv =  styled('div')(({ theme }) => ({
+ margin:"15px 0"
 }));

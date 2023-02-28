@@ -21,8 +21,6 @@ export const mainCardsHeading = () => {
     'mathSolver',
     'university',
     'langTranslation',
-   
-
   ];
 };
 
@@ -54,12 +52,12 @@ export const mainCardsButton = () => {
       'Geometry Problems',
     ],
     university: [
-      'Resume Wriring',"Interview Preparation",
+      'Resume Wriring',
+      'Interview Preparation',
       'Cover Letter Writing',
       'Personal Statement Writing',
-      "Scholarship Essay Writing",
-      "College Admissions Essay Writing",
-      
+      'Scholarship Essay Writing',
+      'College Admissions Essay Writing',
     ],
     langTranslation: [
       'Document Translation',
@@ -69,19 +67,46 @@ export const mainCardsButton = () => {
   };
 };
 
+export const showInputs = () => {
+  return {
+    socialMedia: [
+      'targetAudience',
+      'typeOfPost',
+      'toneOfPost',
+      'specificMessage',
+    ],
+    contentCreation: [
+      'targetAudience',
+      'toneOfPost',
+      'targetWordCount',
+      'keywords',
+    ],
+    contentCorrection: ['contentCreated'],
+    startUp: ['buisnessInfo'],
+    mathSolver: ['problemToSolve'],
+    university: ['personalInfo', 'targetInstitute'],
+    langTranslation: ['sourceLang', 'targetLang', 'contentToTranslate'],
+  };
 
-export const showInputs = () =>{
-
- return{
-  'socialMedia' : ['targetAudience','typeOfPost','toneOfPost','specificMessage'],
-  'contentCreation' : ['targetAudience','toneOfPost','targetWordCount','keywords'],
-  'contentCorrection' : ['contentCreated'],
-  'startUp' : ['buisnessInfo'],
-  'mathSolver' : ['problemToSolve'],
-  'university' : ['personalInfo','targetInstitute'],
-  'langTranslation' : ['sourceLang','targetLang','contentToTranslate'],
- }
-
-// return true;
-// return false;
-}
+  // return true;
+  // return false;
+};
+export const translateInputText = () => {
+  return {
+    targetAudience: '',
+    typeOfPost: '',
+    toneOfPost: '',
+    specificMessage: '',
+    toneOfPost: '',
+    targetWordCount: '',
+    keywords: '',
+    contentCreated: '',
+    buisnessInfo: '',
+    problemToSolve: '',
+    personalInfo: '',
+    targetInstitute: '',
+    sourceLang: '',
+    targetLang: '',
+    contentToTranslate: '',
+  };
+};
