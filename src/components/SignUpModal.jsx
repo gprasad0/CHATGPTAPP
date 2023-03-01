@@ -45,8 +45,8 @@ export default function SignUpModal({ openDialog, closeDialog, modifyInput }) {
     }
   };
 
-  const handleMultiInput = (type,value) =>{
-    setSignUpData(prevState=>{return {...prevState,[type]:value}})
+  const handleMultiInput = (type,e) =>{
+    setSignUpData(prevState=>{return {...prevState,[type]:e.target.value}})
   }
 
   const handleSignUp = () =>{
@@ -65,7 +65,7 @@ export default function SignUpModal({ openDialog, closeDialog, modifyInput }) {
               <h4>First Name</h4>
               <TextField
                 id='outlined-basic'
-                  value={description}
+                  value={signUpData["firstName"]}
                   onChange={(value) => handleMultiInput("firstName", value)}
                 placeholder='Name'
                 sx={{
@@ -84,7 +84,7 @@ export default function SignUpModal({ openDialog, closeDialog, modifyInput }) {
               <h4>Last Name</h4>
               <TextField
                 id='outlined-basic'
-                  value={description}
+                  value={signUpData["lastName"]}
                   onChange={(value) => handleMultiInput("lastName", value)}
                 placeholder='Name'
                 sx={{
@@ -104,7 +104,7 @@ export default function SignUpModal({ openDialog, closeDialog, modifyInput }) {
               <h4>Email</h4>
               <TextField
                 id='outlined-basic'
-                  value={description}
+                  value={signUpData["email"]}
                   onChange={(value) => handleMultiInput("email", value)}
                 placeholder='Name'
                 sx={{
@@ -124,7 +124,7 @@ export default function SignUpModal({ openDialog, closeDialog, modifyInput }) {
               <h4>Password</h4>
               <TextField
                 id='outlined-basic'
-                  value={description}
+                  value={signUpData["password"]}
                   onChange={(value) => handleMultiInput("password", value)}
                 placeholder='Name'
                 sx={{

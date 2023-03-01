@@ -17,17 +17,16 @@ import SignUpModal from '../components/SignUpModal';
 export const LoginPage = () => {
   const dispatch = useDispatch();
   const [signUp,setSignUp] = useState(false)
+  const [loginData,setLoginData] = useState({email:"",password:""})
   const  handleLogin = () =>{
-    // const googleAuth = () =>{
-    //   InstallDesktopTwoTone.open(`${import.meta.env.VITE_BACKEND_APP_URL}/auth/google/callback`,"_self")
-    // }
+  
     window.open("http://localhost:3000/auth/google","_self")
   }
 
 
   const handleNormalLogin = () =>{
     // dispatch(userRegistrationAction())
-    dispatch(loginAction())
+    dispatch(loginAction(loginData))
 
     
   }
@@ -38,6 +37,13 @@ export const LoginPage = () => {
 
   const handleSignUp = () =>{
     setSignUp(true)
+  }
+
+  const handleFormEvents = (type,e) =>{
+    console.log("e.target.value===>",e.target)
+    setLoginData(prevState=> {
+      return {...prevState,[type]:e.target.value}
+    })
   }
 
   return (
@@ -68,16 +74,20 @@ export const LoginPage = () => {
             </h1>
            <MarginDiv>
               <TextField
+              value={loginData["email"]}
                 label='Email'
                 name='Email'
-                // onChange={handleFormEvents}
+                onChange={(e)=>handleFormEvents("email",e)}
               ></TextField>
             </MarginDiv>
             <div>
               <TextField
+              
                 label='Password'
                 name='password'
-                // onChange={handleFormEvents}
+              value={loginData["password"]}
+
+                onChange={(e) => handleFormEvents("password",e)}
                 type={'password'}
                 onKeyPress={(e) => {
                   if (e.key === 'Enter') {
@@ -91,7 +101,7 @@ export const LoginPage = () => {
               <ColorButton
             width={100}
             marginTop={20}
-              onClick={handleLogin}
+              onClick={handleNormalLogin}
             >
              LOGIN
             </ColorButton>

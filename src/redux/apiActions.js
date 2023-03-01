@@ -50,7 +50,7 @@ export const generateMarketingContentAction =
 
 
   export const loginAction =
-  (prompt, temp, outputs) => async (dispatch) => {
+  (loginData) => async (dispatch) => {
     try {
       let data = await axios({
         method: 'post',
@@ -59,6 +59,7 @@ export const generateMarketingContentAction =
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
         url: 'http://localhost:3000/auth/login',
+        data:loginData
         // data: {
         //   prompt,
         //   outputs,
@@ -73,8 +74,8 @@ export const generateMarketingContentAction =
   };
 
   export const signUpAction =
-  (data) => async (dispatch) => {
-    console.log("data====>?",data)
+  (signupData) => async (dispatch) => {
+    // console.log("data====>?",data)
     try {
       let data = await axios({
         method: 'post',
@@ -83,7 +84,7 @@ export const generateMarketingContentAction =
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
         url: 'http://localhost:3000/auth/signup',
-        data
+        data: signupData
       });
 
       // dispatch(marketContentAction(data.data));
