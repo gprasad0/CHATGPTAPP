@@ -10,14 +10,34 @@ import {
 import { InstallDesktopTwoTone } from '@mui/icons-material';
 import googleImg from "../assets/google.png";
 import { loginAction, userRegistrationAction } from '../redux/apiActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ColorButton,MarginDiv } from '../components/commonStyledComponents';
 import SignUpModal from '../components/SignUpModal';
+import { useNavigate } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
+});
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const selector = useSelector(state=>state.auth)
   const [signUp,setSignUp] = useState(false)
   const [loginData,setLoginData] = useState({email:"",password:""})
+  const [errorModal,setErrorModal] = useState(false)
+  useEffect(()=>{
+    console.log("selector==>",selector)
+    if(selector.authenticated){
+      navigate("/home")
+    }else{
+      // setErrorModal(true)
+    }
+  },[selector])
+
   const  handleLogin = () =>{
   
     window.open("http://localhost:3000/auth/google","_self")
@@ -33,6 +53,7 @@ export const LoginPage = () => {
 
   const closeModal = () => {
     setSignUp(false)
+    setErrorModal(false)
   }
 
   const handleSignUp = () =>{
@@ -66,7 +87,7 @@ export const LoginPage = () => {
                 // fontFamily: 'monospace',
                 color: '#153d70',
                 fontWeight: 'bold',
-                // marginLeft: '24px',
+                marginTop: '24px',
               }}
               onClick={handleLogin}
             >
@@ -148,15 +169,15 @@ export const LoginPage = () => {
 
         {/* openDialog={submitModal}  closeDialog={closeModal} */}
 
-        {/* <Snackbar
+        <Snackbar
           open={errorModal}
           autoHideDuration={6000}
-          onClose={handleClose}
+          onClose={closeModal}
         >
-          <Alert onClose={handleClose} severity='error' sx={{ width: '100%' }}>
-            {errorData}
+          <Alert onClose={closeModal} severity='error' sx={{ width: '100%' }}>
+            Login Failed
           </Alert>
-        </Snackbar> */}
+        </Snackbar>
       </div>
     </div>
   );

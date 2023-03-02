@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { loginSuccessAction,logoutAction } from './slices/authSlice';
 import { marketContentAction } from './slices/marketContentSlice';
 
 export const generateMarketingContentAction =
@@ -66,6 +67,14 @@ export const generateMarketingContentAction =
         //   temp,
         // },
       });
+
+    console.log("data===>",data)
+    if(data.status == 200){
+      dispatch(loginSuccessAction())
+    }else{
+      dispatch(logoutAction())
+
+    }
 
       // dispatch(marketContentAction(data.data));
     } catch (e) {

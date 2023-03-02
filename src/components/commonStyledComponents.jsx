@@ -116,7 +116,7 @@ export const MainTopicCard = styled('div')(({ theme }) => ({
 
 export const SecondaryTopicCard = styled('div')(({ theme }) => ({
   height: '180px',
-  width: '20vw',
+  width: '220px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -128,6 +128,7 @@ export const SecondaryTopicCard = styled('div')(({ theme }) => ({
   background: 'white',
   border: '1px solid #dedede',
   cursor: 'pointer',
+  textAlign:'center',
 
   '&:hover': {
     boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',

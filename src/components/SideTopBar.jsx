@@ -31,6 +31,9 @@ import { MenuIconDiv, SideBarText } from './commonStyledComponents';
 import { TopBar } from '../components/TopBar';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutAction } from '../redux/slices/authSlice';
+
 
 const drawerWidth = 200;
 
@@ -103,7 +106,8 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export function SideTopBar() {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation()
+  const dispatch = useDispatch()
   const theme = useTheme();
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
@@ -115,6 +119,12 @@ export function SideTopBar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+
+  const handleLogout = () =>{
+    dispatch(logoutAction())
+    navigate("/login")
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -202,10 +212,10 @@ export function SideTopBar() {
               <SideBarText open={open}>{t("graph")}</SideBarText>
             </MenuIconDiv>
           </div>
-          <div>
+          <div onClick={handleLogout}>
             <MenuIconDiv style={{ marginTop: '70px' }}>
               <LogoutIcon />
-              <SideBarText open={open}>{t("logout")}</SideBarText>
+              <SideBarText open={open} >{t("logout")}</SideBarText>
             </MenuIconDiv>
           </div>
         </div>
