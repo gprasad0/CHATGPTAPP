@@ -15,12 +15,13 @@ function App() {
 console.log("theme=====>",theme)
   return (
     <>
-    {/* {selector.authenticated && <SideTopBar />} */}
-    <SideTopBar />
+    {selector.authenticated && <SideTopBar />}
+    {/* <SideTopBar /> */}
       <Routes>
         <Route path='/assistant' element={<MarketingContent />} />
         <Route path='/home' element={<MainCardDashboard />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='*' element={<LoginPage />} />
         
       </Routes>
     </>
