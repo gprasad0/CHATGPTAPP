@@ -70,6 +70,8 @@ export const generateMarketingContentAction =
 
     console.log("data===>",data)
     if(data.status == 200){
+      
+      localStorage.setItem("token",data.data.accessToken);
       dispatch(loginSuccessAction())
     }else{
       dispatch(logoutAction())

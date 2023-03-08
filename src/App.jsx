@@ -10,8 +10,13 @@ import { LoginPage } from './pages/Login';
 import { useSelector } from 'react-redux';
 
 function App() {
+
   const selector = useSelector(state=>state.auth)
   const theme = useTheme();
+
+  useEffect(()=>{
+    //make axios call to 
+  },[])
 console.log("theme=====>",theme)
   return (
     <>
