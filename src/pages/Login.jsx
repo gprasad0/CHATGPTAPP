@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { InstallDesktopTwoTone } from '@mui/icons-material';
 import googleImg from "../assets/google.png";
-import { loginAction, userRegistrationAction } from '../redux/apiActions';
+import { generateMarketingContentAction, loginAction, refreshJwtAction, userRegistrationAction } from '../redux/apiActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { ColorButton,MarginDiv } from '../components/commonStyledComponents';
 import SignUpModal from '../components/SignUpModal';
@@ -32,7 +32,9 @@ export const LoginPage = () => {
   useEffect(()=>{
     console.log("selector==>",selector)
     if(selector.authenticated){
-      navigate("/home")
+      let x = document.cookie;
+      console.log("cookire",x)
+      // navigate("/home")
     }else{
       // setErrorModal(true)
     }
@@ -159,7 +161,28 @@ export const LoginPage = () => {
 						<img style= {{width:"24px",marginRight:"14px"}} src={googleImg} alt="google icon" />
 						<span>Sign in with Google</span>
 					</button>
-            
+          <ColorButton
+            width={100}
+            marginTop={20}
+              onClick={handleNormalLogin}
+            >
+             LOGIN
+            </ColorButton><ColorButton
+            width={100}
+            marginTop={20}
+              onClick={
+                ()=> dispatch(refreshJwtAction(loginData))
+      
+              }
+            >
+             Refresh
+            </ColorButton><ColorButton
+            width={100}
+            marginTop={20}
+              onClick={ ()=> dispatch(generateMarketingContentAction(loginData))}
+            >
+             normal
+            </ColorButton>
           <MarginDiv style={{marginTop:"5px",marginBottom:"10px"}}>New Here? <span style={{color: 'rgb(244 162 0)',fontWeight:800,cursor:"pointer"}} onClick={handleSignUp}>Sign Up</span></MarginDiv>
 
           {/* </Grid> */}

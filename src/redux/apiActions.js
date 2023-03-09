@@ -12,12 +12,14 @@ export const generateMarketingContentAction =
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
         url: 'http://localhost:3000/api/storyscape/compose',
-        data: {
-          prompt,
-          outputs,
-          temp,
-          multiInput
-        },
+        withCredentials: true
+
+        // data: {
+        //   prompt,
+        //   outputs,
+        //   temp,
+        //   multiInput
+        // },
       });
 
       dispatch(marketContentAction(data.data));
@@ -60,7 +62,8 @@ export const generateMarketingContentAction =
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
         url: 'http://localhost:3000/auth/login',
-        data:loginData
+        data:loginData,
+        withCredentials: true
         // data: {
         //   prompt,
         //   outputs,
@@ -70,13 +73,51 @@ export const generateMarketingContentAction =
 
     console.log("data===>",data)
     if(data.status == 200){
-      
+      let x = document.cookie;
+      console.log("cookire",x)
       localStorage.setItem("token",data.data.accessToken);
       dispatch(loginSuccessAction())
     }else{
       dispatch(logoutAction())
 
     }
+
+      // dispatch(marketContentAction(data.data));
+    } catch (e) {
+      return console.error(e.message);
+    }
+  };
+
+  export const refreshJwtAction =
+  (loginData) => async (dispatch) => {
+    try {
+
+      let token = localStorage.getItem("token")
+      console.log("token",token)
+      let data = await axios({
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        url: 'http://localhost:3000/auth/refresh',
+        // data:loginData
+        // data: {
+        //   prompt,
+        //   outputs,
+        //   temp,
+        // },
+      });
+
+    console.log("data===>",data)
+    // if(data.status == 200){
+      
+    //   localStorage.setItem("token",data.data.accessToken);
+    //   dispatch(loginSuccessAction())
+    // }else{
+    //   dispatch(logoutAction())
+
+    // }
 
       // dispatch(marketContentAction(data.data));
     } catch (e) {
