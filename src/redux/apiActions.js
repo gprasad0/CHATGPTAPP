@@ -92,14 +92,16 @@ export const generateMarketingContentAction =
   (loginData) => async (dispatch) => {
     try {
 
-      let token = localStorage.getItem("token")
-      console.log("token",token)
+      let x = document.cookie;
+      console.log("token",x)
       let data = await axios({
         method: 'get',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          // 'Authorization': `Bearer ${token}`
         },
+        withCredentials: true,
+
         url: 'http://localhost:3000/auth/refresh',
         // data:loginData
         // data: {
