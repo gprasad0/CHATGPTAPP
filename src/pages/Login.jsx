@@ -161,7 +161,7 @@ export const LoginPage = () => {
 						<img style= {{width:"24px",marginRight:"14px"}} src={googleImg} alt="google icon" />
 						<span>Sign in with Google</span>
 					</button>
-          <ColorButton
+          {/* <ColorButton
             width={100}
             marginTop={20}
               onClick={handleNormalLogin}
@@ -182,7 +182,7 @@ export const LoginPage = () => {
               onClick={ ()=> dispatch(generateMarketingContentAction(loginData))}
             >
              normal
-            </ColorButton>
+            </ColorButton> */}
           <MarginDiv style={{marginTop:"5px",marginBottom:"10px"}}>New Here? <span style={{color: 'rgb(244 162 0)',fontWeight:800,cursor:"pointer"}} onClick={handleSignUp}>Sign Up</span></MarginDiv>
 
           {/* </Grid> */}

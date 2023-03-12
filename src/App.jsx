@@ -8,8 +8,12 @@ import { Route, Routes } from 'react-router-dom';
 import { MainCardDashboard } from './pages/MainCardDashboard';
 import { LoginPage } from './pages/Login';
 import { useSelector } from 'react-redux';
+import { ProtectedRoutes } from './routes/ProtectedRoutes';
 
 function App() {
+
+  
+
 
   const selector = useSelector(state=>state.auth)
   const theme = useTheme();
@@ -23,11 +27,10 @@ console.log("theme=====>",theme)
     {selector.authenticated && <SideTopBar />}
     {/* <SideTopBar /> */}
       <Routes>
-        <Route path='/assistant' element={<MarketingContent />} />
-        <Route path='/home' element={<MainCardDashboard />} />
+        <Route path='/assistant' element={ <ProtectedRoutes><MarketingContent /></ProtectedRoutes>} />
+        <Route path='/home' element={   <ProtectedRoutes><MainCardDashboard /></ProtectedRoutes>  } />
         <Route path='/login' element={<LoginPage />} />
         <Route path='*' element={<LoginPage />} />
-        
       </Routes>
     </>
   );

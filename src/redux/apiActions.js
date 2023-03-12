@@ -73,10 +73,9 @@ export const generateMarketingContentAction =
 
     console.log("data===>",data)
     if(data.status == 200){
-      let x = document.cookie;
-      console.log("cookire",x)
+      // let x = document.cookie;
       localStorage.setItem("token",data.data.accessToken);
-      dispatch(loginSuccessAction())
+      dispatch(loginSuccessAction(data.data.accessToken))
     }else{
       dispatch(logoutAction())
 
@@ -92,8 +91,7 @@ export const generateMarketingContentAction =
   (loginData) => async (dispatch) => {
     try {
 
-      let x = document.cookie;
-      console.log("token",x)
+      
       let data = await axios({
         method: 'get',
         headers: {
@@ -112,6 +110,15 @@ export const generateMarketingContentAction =
       });
 
     console.log("data===>",data)
+
+    if(data.status == 200){
+      // let x = document.cookie;
+      localStorage.setItem("token",data.data.accessToken);
+      dispatch(loginSuccessAction())
+    }else{
+      dispatch(logoutAction())
+
+    }
     // if(data.status == 200){
       
     //   localStorage.setItem("token",data.data.accessToken);
