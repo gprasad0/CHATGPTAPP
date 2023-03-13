@@ -45,7 +45,7 @@ export const InputsOnCard = ({ type , handleMultiInputs}) => {
               onChange={(value) => handleMultiInput(input, value)}
               placeholder={t(input + 'Ex')}
               sx={{
-                width: '12vw',
+                width: '18vw',
 
                 '& .MuiOutlinedInput-root': {
                   // borderRadius: '10px',

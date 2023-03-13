@@ -42,7 +42,7 @@ export const mainCardsButton = () => {
       'Sentence Structure Correction',
     ],
     startUp: [
-      'Busdiness Plan Creation',
+      'Business Plan Creation',
       'Market Research',
       'Competitor Analysis',
     ],
@@ -52,7 +52,7 @@ export const mainCardsButton = () => {
       'Geometry Problems',
     ],
     university: [
-      'Resume Wriring',
+      'Resume Writing',
       'Interview Preparation',
       'Cover Letter Writing',
       'Personal Statement Writing',
@@ -73,7 +73,7 @@ export const showInputs = () => {
       'targetAudience',
       'typeOfPost',
       'toneOfPost',
-      'specificMessage',
+      'typeOfMedia'
     ],
     contentCreation: [
       'targetAudience',
@@ -81,11 +81,11 @@ export const showInputs = () => {
       'targetWordCount',
       'keywords',
     ],
-    contentCorrection: ['contentCreated'],
-    startUp: ['buisnessInfo'],
-    mathSolver: ['problemToSolve'],
-    university: ['personalInfo', 'targetInstitute'],
-    langTranslation: ['sourceLang', 'targetLang', 'contentToTranslate'],
+    contentCorrection: [],
+    startUp: [],
+    mathSolver: [],
+    university: ['targetInstitute'],
+    langTranslation: ['sourceLang', 'targetLang'],
   };
 
   // return true;
@@ -110,3 +110,132 @@ export const translateInputText = () => {
     contentToTranslate: '',
   };
 };
+
+export const returnCorrectDescription = (type) =>{
+  if(type == "contentCorrection"){
+    return ["Content to be corrected",""]
+  }
+
+  if(type == "startUp"){
+    return ["Type of Assistance","e.g., business name, product description, target audience"]
+
+  }
+
+  if(type == "mathSolver"){
+    return ["Type of Problem","e.g.,algebraic equations, calculus problems, geometry problems"]
+
+  }
+
+  if(type == "university"){
+    return ["Personal Information","e.g., name, education, work experience"]
+
+  }
+
+  if(type == "langTranslation"){
+    return ["Content to be Translated",""]
+
+  }
+  if(type == "socialMedia"){
+    return ["Any Message to be included",""]
+
+  }
+  
+
+  return ["Description",""]
+
+}
+
+export const convertPrompt = (inputs,type,typeOfCard,description) =>{
+  console.log("inputs,type==>",inputs,type,description)
+  let prompt = type+'Prompt';
+  let data = {}
+  let promptData = ""
+  if(type == 'contentCreation'){
+    inputs["typeOfcontent"] =  i18next.t(type)
+  }
+  if(type == 'contentCorrection'){
+    inputs["contentToCorrect"] = description
+    inputs["typeOfCorrection"] = typeOfCard
+
+  }
+
+  if(type == "startUp"){
+    inputs["typeOfAssistance"] = typeOfCard 
+    inputs["businessInfo"] = description
+
+  }
+
+  if(type == "mathSolver"){
+    inputs["typeOfProblem"] = typeOfCard 
+    inputs["problemToSolve"] = description
+
+  }
+
+  if(type == "university"){
+    inputs["typeOfWriting"] = typeOfCard 
+    inputs["personalInformation"] = description
+
+  }
+
+  if(type == "langTranslation"){
+    inputs["typeofTranslation"] = typeOfCard 
+    inputs["contentToTranslate"] = description
+
+  }
+
+  if(type == "socialMedia"){
+    inputs["typeOfPost"] = typeOfCard 
+    inputs["specificMessage"] = description 
+
+    
+
+  }
+
+
+
+  for (const [key, value] of Object.entries(inputs)) {
+    if(value !== ''){
+      data[key] = value
+    }
+  }
+
+  if(type == 'contentCreation'){
+     promptData = i18next.t(prompt, data) +". Should be on the lines of this description: " + description;
+
+  }
+
+  if(type == 'contentCorrection'){
+    promptData = i18next.t(prompt, data) ;
+
+  }
+
+  if(type == "startUp"){
+    promptData = i18next.t(prompt, data)
+
+  }
+
+  if(type == "mathSolver"){
+    promptData = i18next.t(prompt, data)
+
+
+  }
+
+  if(type == "university"){
+    promptData = i18next.t(prompt, data) ;
+
+  }
+
+  if(type == "langTranslation"){
+    promptData = i18next.t(prompt, data) ;
+  
+  }
+
+  if(type == "socialMedia"){
+    promptData = i18next.t(prompt, data) ;
+
+
+  }
+
+console.log("promptData===>",promptData)
+return promptData;
+}

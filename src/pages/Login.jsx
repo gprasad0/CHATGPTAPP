@@ -34,7 +34,7 @@ export const LoginPage = () => {
     if(selector.authenticated){
       let x = document.cookie;
       console.log("cookire",x)
-      // navigate("/home")
+      navigate("/home")
     }else{
       // setErrorModal(true)
     }

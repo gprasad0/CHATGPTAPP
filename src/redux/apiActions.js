@@ -1,28 +1,40 @@
 import axios from 'axios';
+import { convertPrompt } from '../helperFunctions/commonHelperFunctions';
 import { loginSuccessAction,logoutAction } from './slices/authSlice';
 import { marketContentAction } from './slices/marketContentSlice';
 
 export const generateMarketingContentAction =
-  (prompt, temp, outputs, multiInput) => async (dispatch) => {
+  (description, temp, outputs, multiInput, type, typeOfCard) => async (dispatch) => {
+
+    let actualPrompt = convertPrompt(multiInput,type,typeOfCard,description)
+    console.log("localStorage==>",actualPrompt)
+
     try {
-      let data = await axios({
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
-        },
-        url: 'http://localhost:3000/api/storyscape/compose',
-        withCredentials: true
+      // let data = await axios({
+      //   method: 'post',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': `Bearer ${localStorage.getItem("token")}`
+      //   },
+      //   url: 'http://localhost:3000/api/storyscape/compose',
+      //   withCredentials: true,
 
-        // data: {
-        //   prompt,
-        //   outputs,
-        //   temp,
-        //   multiInput
-        // },
-      });
+      //   // data: {
+      //   //   description,
+      //   //   outputs,
+      //   //   temp,
+      //   //   multiInput
+      //   // },
 
-      dispatch(marketContentAction(data.data));
+      //   data: {
+      //     prompt:actualPrompt,
+      //     outputs,
+      //     temp,
+      //     multiInput
+      //   },
+      // });
+
+      // dispatch(marketContentAction(data.data));
     } catch (e) {
       return console.error(e.message);
     }

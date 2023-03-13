@@ -9,15 +9,18 @@ export const ProtectedRoutes = ({children}) =>{
 
     useEffect(()=>{
         let data = localStorage.getItem('token')
-        if(selector.token == ""){
-            refreshJwtAction()
-        }
+        console.log("selector----->",selector,)
+        // if(!selector.authenticated){
+        //     refreshJwtAction()
+        // }else{
+        // navigate('/login');
+
+        // }
     },[])
 
 
     if (selector.authenticated) {
         return children;
-      } else {
-        navigate('/login');
-      }
+      } 
+      return <Navigate to="/"></Navigate>;
 }

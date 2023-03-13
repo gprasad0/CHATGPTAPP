@@ -17,7 +17,10 @@ import {
 import { SelectComponent } from '../components/commonUiElements/SelectComponent';
 import { ResultsCard } from '../components/ResultsCard';
 import { generateMarketingContentAction } from '../redux/apiActions';
-import { getArray } from '../helperFunctions/commonHelperFunctions';
+import {
+  getArray,
+  returnCorrectDescription,
+} from '../helperFunctions/commonHelperFunctions';
 import { useTranslation } from 'react-i18next';
 import { PlaceHolder } from '../components/commonUiElements/PlaceHolder';
 import { InputsOnCard } from '../components/InputsOnCard';
@@ -30,13 +33,18 @@ export const MarketingContent = () => {
   const [creativity, setCreativity] = useState('');
   const [outputs, setoutputs] = useState(0);
   const [searchParams] = useSearchParams();
-  const [multiInput,setMultiInput] = useState({})
-    console.log("searchParams",[...searchParams]); 
+  const [mainCardData, setmainCardData] = useState([...searchParams][0][0]);
+  const [secondaryCardData, setSecondaryCardData] = useState(
+    [...searchParams][0][1]
+  );
+
+  const [multiInput, setMultiInput] = useState({});
+  console.log('searchParams', [...searchParams]);
   const dispatch = useDispatch();
   const marketData = useSelector(
     (state) => state.marketContent.marketContentData
   );
-  console.log('marketData==>', [...searchParams][0][0]);
+  console.log('marketData==>', mainCardData);
 
   const handleDescription = (e) => {
     setDescription(e.target.value);
@@ -56,9 +64,9 @@ export const MarketingContent = () => {
     }
   };
 
-  const handleMultiInputs = (data) =>{
-    setMultiInput(data)
-  }
+  const handleMultiInputs = (data) => {
+    setMultiInput(data);
+  };
 
   return (
     <MainPaper>
@@ -70,13 +78,17 @@ export const MarketingContent = () => {
           background: '#f9fafc',
         }}
       >
-        <MainHeader style={{ background: '#f9fafc',paddingLeft:"18px" }}>
+        <MainHeader style={{ background: '#f9fafc', paddingLeft: '18px' }}>
           <MainH1>
-            {[...searchParams][0][1]}
+            {secondaryCardData}
             {/* Marketing Content */}
           </MainH1>
           <div style={{ padding: '8px' }}>
-            <MainH3 style={{marginBottom:"10px"}}> {t('description')}</MainH3>
+            <MainH3 style={{ marginBottom: '10px' }}>
+              {returnCorrectDescription(mainCardData)[0]}
+              {/* {t('description')} */}
+            </MainH3>
+
             <TextField
               // disabled={textFieldDisable}
               id='outlined-basic'
@@ -92,6 +104,7 @@ export const MarketingContent = () => {
                   borderRadius: '10px',
                 },
               }}
+              placeholder={returnCorrectDescription(mainCardData)[1]}
               // focused
               inputProps={{
                 // minlength: 250,
@@ -101,14 +114,16 @@ export const MarketingContent = () => {
               onChange={(value) => handleDescription(value)}
               // placeholder='Minimum of 50 characters and Maximum of 500 characters'
             />
+             <InputsOnCard
+              type={[...searchParams][0]}
+              handleMultiInputs={handleMultiInputs}
+            />
             <MainH3 style={{ marginTop: '26px' }}>
               {' '}
               {t('advancedSettings')}
             </MainH3>
-            <InputSelectDiv
-              
-            >
-              <h4 style={{ width: '40%'  }}>{t('creativity')}</h4>
+            <InputSelectDiv>
+              <h4 style={{ width: '40%' }}>{t('creativity')}</h4>
               <SelectComponent
                 data={getArray('creativity')}
                 handleSelect={handleSelect}
@@ -116,22 +131,16 @@ export const MarketingContent = () => {
               />
             </InputSelectDiv>
 
-            <InputSelectDiv
-              
-            >
-              <h4 style={{ width: '40%'  }}>{t('outputs')} </h4>
+            <InputSelectDiv>
+              <h4 style={{ width: '40%' }}>{t('outputs')} </h4>
               <SelectComponent
                 data={getArray('outputs')}
                 handleSelect={handleSelect}
                 type='outputs'
               />
             </InputSelectDiv>
-            <InputsOnCard  type={[...searchParams][0]} handleMultiInputs = {handleMultiInputs}/>
+           
           </div>
-
-        
-
-          
 
           <FlexDiv style={{ justifyContent: 'center' }}>
             <ColorButton
@@ -142,7 +151,9 @@ export const MarketingContent = () => {
                     description,
                     creativity,
                     outputs,
-                    multiInput
+                    multiInput,
+                    mainCardData,
+                    secondaryCardData
                   )
                 )
               }
