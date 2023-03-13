@@ -2,7 +2,7 @@ import { Calculate } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   FlexDiv,
@@ -25,6 +25,13 @@ import { useTranslation } from 'react-i18next';
 import { PlaceHolder } from '../components/commonUiElements/PlaceHolder';
 import { InputsOnCard } from '../components/InputsOnCard';
 import { useSearchParams } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
+});
 
 export const MarketingContent = () => {
   const { t, i18n } = useTranslation();
@@ -34,6 +41,7 @@ export const MarketingContent = () => {
   const [outputs, setoutputs] = useState(0);
   const [searchParams] = useSearchParams();
   const [mainCardData, setmainCardData] = useState([...searchParams][0][0]);
+  const [errorModal,setErrorModal] = useState(false)
   const [secondaryCardData, setSecondaryCardData] = useState(
     [...searchParams][0][1]
   );
@@ -44,6 +52,9 @@ export const MarketingContent = () => {
   const marketData = useSelector(
     (state) => state.marketContent.marketContentData
   );
+  const tokenExpired = useSelector(
+    (state) => state.marketContent.tokenExpired
+  );
   console.log('marketData==>', mainCardData);
 
   const handleDescription = (e) => {
@@ -51,8 +62,20 @@ export const MarketingContent = () => {
   };
 
   useEffect(() => {
+    console.log("tokenExpired---->",tokenExpired)
+    if(tokenExpired){
+      setErrorModal(true)
+
+    }
     // dispatch(sample())
-  }, []);
+  }, [tokenExpired]);
+
+
+  const closeModal = () => {
+    // setSignUp(false)
+    setErrorModal(false)
+    
+  }
 
   const handleSelect = (value, type) => {
     if (type == 'creativity') {
@@ -181,6 +204,15 @@ export const MarketingContent = () => {
               )}
             </div>
           </MainHeader>
+          <Snackbar
+          open={errorModal}
+          autoHideDuration={6000}
+          onClose={closeModal}
+        >
+          <Alert onClose={closeModal} severity='error' sx={{ width: '100%' }}>
+            Token Expired. Please refreesh token.
+          </Alert>
+        </Snackbar>
         </div>
       </div>
     </MainPaper>

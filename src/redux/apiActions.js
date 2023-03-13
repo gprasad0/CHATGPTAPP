@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { convertPrompt } from '../helperFunctions/commonHelperFunctions';
 import { loginSuccessAction,logoutAction } from './slices/authSlice';
-import { marketContentAction } from './slices/marketContentSlice';
+import { marketContentAction, tokenExceededAction } from './slices/marketContentSlice';
 
 export const generateMarketingContentAction =
   (description, temp, outputs, multiInput, type, typeOfCard) => async (dispatch) => {
@@ -10,31 +10,40 @@ export const generateMarketingContentAction =
     console.log("localStorage==>",actualPrompt)
 
     try {
-      // let data = await axios({
-      //   method: 'post',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': `Bearer ${localStorage.getItem("token")}`
-      //   },
-      //   url: 'http://localhost:3000/api/storyscape/compose',
-      //   withCredentials: true,
+      let chatData = await axios({
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("token")}`
+        },
+        url: 'http://localhost:3000/api/storyscape/compose',
+        withCredentials: true,
 
-      //   // data: {
-      //   //   description,
-      //   //   outputs,
-      //   //   temp,
-      //   //   multiInput
-      //   // },
+        // data: {
+        //   description,
+        //   outputs,
+        //   temp,
+        //   multiInput
+        // },
 
-      //   data: {
-      //     prompt:actualPrompt,
-      //     outputs,
-      //     temp,
-      //     multiInput
-      //   },
-      // });
+        data: {
+          prompt:actualPrompt,
+          outputs,
+          temp,
+          multiInput
+        },
+      });
 
-      // dispatch(marketContentAction(data.data));
+      console.log("dat====>",chatData)
+      if(chatData.data.status == 200){
+        dispatch(marketContentAction(chatData.data));
+
+      }else{
+        console.log("tokenExpired----11")
+        dispatch(tokenExceededAction(chatData.data));
+
+      }
+
     } catch (e) {
       return console.error(e.message);
     }
