@@ -2,6 +2,7 @@ import axios from 'axios';
 import { convertPrompt } from '../helperFunctions/commonHelperFunctions';
 import { loginSuccessAction,logoutAction } from './slices/authSlice';
 import { marketContentAction, tokenExceededAction } from './slices/marketContentSlice';
+import { paymentOrderAction } from './slices/paymentSlice';
 
 export const generateMarketingContentAction =
   (description, temp, outputs, multiInput, type, typeOfCard) => async (dispatch) => {
@@ -175,3 +176,29 @@ export const generateMarketingContentAction =
     }
   };
 
+
+
+  export const makeOrderRequest =
+  (prompt, temp, outputs) => async (dispatch) => {
+    try {
+      let data = await axios({
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
+        },
+        url: 'http://localhost:3000/api/makeOrder',
+        // data: {
+        //   prompt,
+        //   outputs,
+        //   temp,
+        // },
+      });
+console.log("data===>",data)
+      dispatch(paymentOrderAction(data.data))
+
+      // dispatch(marketContentAction(data.data));
+    } catch (e) {
+      return console.error(e.message);
+    }
+  };

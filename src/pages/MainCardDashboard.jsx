@@ -11,12 +11,23 @@ import {
   mainCardsHeading,
 } from '../helperFunctions/commonHelperFunctions';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { makeOrderRequest } from '../redux/apiActions';
+import { createSubscription } from 'react-redux/es/utils/Subscription';
 
 export const MainCardDashboard = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const orderId = useSelector(
+    (state) => state.payment.orderId
+  );
+
+  const amount = useSelector(
+    (state) => state.payment.amount
+  );
 
   const [mainCard, setMainCard] = useState('socialMedia');
   const [selectedCard,setSelectedCard] = useState('socialMedia')
@@ -24,6 +35,71 @@ export const MainCardDashboard = () => {
     setMainCard(value);
     setSelectedCard(value)
   };
+
+  useEffect(()=>{
+    if(orderId !== ""){
+      displayRazorPay()
+
+    }
+  },[orderId])
+
+  const displayRazorPay = async() =>{
+
+    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+
+		if (!res) {
+			alert('Razorpay SDK failed to load. Are you online?')
+			return
+		}
+
+		// const data = await fetch('http://localhost:1337/razorpay', { method: 'POST' }).then((t) =>
+		// 	t.json()
+		// )
+
+		// console.log(data)
+
+    var options = {
+      "key": import.meta.env.VITE_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+      "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": "STORYSCAPE", //your business name
+      "description": "Test Transaction",
+      "image": "https://example.com/your_logo",
+      "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "callback_url": "localhost:5173/home",
+      "prefill": {
+          "name": "Gaurav Kumar", //your customer's name
+          "email": "gaurav.kumar@example.com",
+          "contact": "9000090000"
+      },
+      "notes": {
+          "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+          "color": "#3399cc"
+      }
+  };
+  console.log("options=====>",options)
+const paymentObject = new window.Razorpay(options)
+		paymentObject.open()
+  // var rzp1 = new Razorpay(options);
+  }
+
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement('script')
+      script.src = src
+      script.onload = () => {
+        resolve(true)
+      }
+      script.onerror = () => {
+        resolve(false)
+      }
+      document.body.appendChild(script)
+    })
+  }
+
+ 
 
   const handleSecondaryCard = (card) =>{
     // navigate("/")
@@ -33,6 +109,10 @@ export const MainCardDashboard = () => {
       search: `?${mainCard}=${card}`,
     });
 
+  }
+
+  const makePaymentRequest = () =>{
+    dispatch(makeOrderRequest())
   }
 
 
@@ -107,6 +187,7 @@ export const MainCardDashboard = () => {
               })}
             {/* </div> */}
           </div>
+          <div><button onClick={makePaymentRequest}>razorpay</button></div>
         </MainHeader>
       </div>
     </MainPaper>
