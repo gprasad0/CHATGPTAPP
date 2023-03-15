@@ -11,24 +11,34 @@ import { useSelector } from 'react-redux';
 import { ProtectedRoutes } from './routes/ProtectedRoutes';
 
 function App() {
-
-  
-
-
-  const selector = useSelector(state=>state.auth)
+  const selector = useSelector((state) => state.auth);
   const theme = useTheme();
 
-  useEffect(()=>{
-    //make axios call to 
-  },[])
-console.log("theme=====>",theme)
+  useEffect(() => {
+    //make axios call to
+  }, []);
+  console.log('theme=====>', theme);
   return (
     <>
-    {selector.authenticated && <SideTopBar />}
-    {/* <SideTopBar /> */}
+      {selector.authenticated && <SideTopBar />}
+      {/* <SideTopBar /> */}
       <Routes>
-        <Route path='/assistant' element={ <ProtectedRoutes><MarketingContent /></ProtectedRoutes>} />
-        <Route path='/home' element={   <ProtectedRoutes><MainCardDashboard /></ProtectedRoutes>  } />
+        <Route
+          path='/assistant'
+          element={
+            // <ProtectedRoutes>
+              <MarketingContent />
+            // </ProtectedRoutes>
+          }
+        />
+        <Route
+          path='/home'
+          element={
+            // <ProtectedRoutes>
+              <MainCardDashboard />
+            // </ProtectedRoutes>
+          }
+        />
         <Route path='/login' element={<LoginPage />} />
         <Route path='*' element={<LoginPage />} />
       </Routes>

@@ -36,7 +36,7 @@ export const generateMarketingContentAction =
 
       console.log("dat====>",chatData)
       if(chatData.data.status == 200){
-        dispatch(marketContentAction(chatData.data));
+        dispatch(marketContentAction(chatData.data.data));
 
       }else{
         console.log("tokenExpired----11")
