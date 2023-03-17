@@ -58,6 +58,7 @@ export const MainCardDashboard = () => {
 
 		// console.log(data)
 
+   
     var options = {
       "key": import.meta.env.VITE_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
       "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -66,7 +67,10 @@ export const MainCardDashboard = () => {
       "description": "Test Transaction",
       "image": "https://example.com/your_logo",
       "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      "callback_url": "localhost:5173/home",
+      "handler": function (response){
+        console.log("response====>",response)
+    },
+      // "callback_url": "http://localhost:3000/api/paymentData",
       "prefill": {
           "name": "Gaurav Kumar", //your customer's name
           "email": "gaurav.kumar@example.com",
@@ -82,6 +86,16 @@ export const MainCardDashboard = () => {
   console.log("options=====>",options)
 const paymentObject = new window.Razorpay(options)
 		paymentObject.open()
+
+    rzp1.on('payment.failed', function (response){
+      alert(response.error.code);
+      alert(response.error.description);
+      alert(response.error.source);
+      alert(response.error.step);
+      alert(response.error.reason);
+      alert(response.error.metadata.order_id);
+      alert(response.error.metadata.payment_id);
+});
   // var rzp1 = new Razorpay(options);
   }
 
