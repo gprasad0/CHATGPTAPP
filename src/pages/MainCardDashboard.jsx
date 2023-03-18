@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { makeOrderRequest } from '../redux/apiActions';
+import { makeOrderRequest, verfiyPaymentAction } from '../redux/apiActions';
 import { createSubscription } from 'react-redux/es/utils/Subscription';
 
 export const MainCardDashboard = () => {
@@ -37,10 +37,10 @@ export const MainCardDashboard = () => {
   };
 
   useEffect(()=>{
-    if(orderId !== ""){
-      displayRazorPay()
+    // if(orderId !== ""){
+    //   displayRazorPay()
 
-    }
+    // }
   },[orderId])
 
   const displayRazorPay = async() =>{
@@ -69,6 +69,7 @@ export const MainCardDashboard = () => {
       "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       "handler": function (response){
         console.log("response====>",response)
+        dispatch(verfiyPaymentAction(response,orderId))
     },
       // "callback_url": "http://localhost:3000/api/paymentData",
       "prefill": {
@@ -87,7 +88,7 @@ export const MainCardDashboard = () => {
 const paymentObject = new window.Razorpay(options)
 		paymentObject.open()
 
-    rzp1.on('payment.failed', function (response){
+    paymentObject.on('payment.failed', function (response){
       alert(response.error.code);
       alert(response.error.description);
       alert(response.error.source);

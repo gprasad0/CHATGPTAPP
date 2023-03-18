@@ -202,3 +202,27 @@ console.log("data===>",data)
       return console.error(e.message);
     }
   };
+
+  export const verfiyPaymentAction =
+  (response,orderId) => async (dispatch) => {
+    try {
+      let data = await axios({
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
+        },
+        url: 'http://localhost:3000/api/verifyPayment',
+        data: {
+          response,orderId
+        },
+      });
+console.log("data===>",data)
+      // dispatch(paymentOrderAction(data.data))
+
+      // dispatch(marketContentAction(data.data));
+    } catch (e) {
+      return console.error(e.message);
+    }
+  };
+
