@@ -9,6 +9,8 @@ import { MainCardDashboard } from './pages/MainCardDashboard';
 import { LoginPage } from './pages/Login';
 import { useSelector } from 'react-redux';
 import { ProtectedRoutes } from './routes/ProtectedRoutes';
+import { Handshake } from '@mui/icons-material';
+import HandleGoogleAuth from './components/authComponents/HandleGoogleAuth';
 
 function App() {
   const selector = useSelector((state) => state.auth);
@@ -40,6 +42,10 @@ function App() {
           }
         />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/home/googleAuth' element={<HandleGoogleAuth />} />
+
+        {/* <Route path='/payment' element={<LoginPage />} /> */}
+       
         <Route path='*' element={<LoginPage />} />
       </Routes>
     </>
