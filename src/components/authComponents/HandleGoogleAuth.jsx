@@ -1,14 +1,14 @@
 import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { googleAuthSuccessAction } from "../../redux/apiActions"
 
-let x = document.cookie;
 
 const HandleGoogleAuth = () =>{
-
+    let dispatch = useDispatch()
     useEffect(()=>{
-      let x = document.cookie;
-        console.log("=======>",x)
+        dispatch(googleAuthSuccessAction())
     },[])
-      console.log("=======>",x)
+      
     return(
         <div>Logged in</div>
     )

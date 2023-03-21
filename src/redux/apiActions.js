@@ -226,3 +226,33 @@ console.log("data===>",data)
     }
   };
 
+
+  export const googleAuthSuccessAction =
+  () => async (dispatch) => {
+    try {
+      let data = await axios({
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${token}`
+        },
+        withCredentials: true,
+
+        url: 'http://localhost:3000/auth/googleOauthSuccess',
+        // data:loginData
+        // data: {
+        //   prompt,
+        //   outputs,
+        //   temp,
+        // },
+      });
+console.log("data===>",data)
+      // dispatch(paymentOrderAction(data.data))
+
+      // dispatch(marketContentAction(data.data));
+    } catch (e) {
+      return console.error(e.message);
+    }
+  };
+
+  
