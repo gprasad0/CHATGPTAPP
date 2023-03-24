@@ -3,6 +3,8 @@ import { convertPrompt } from '../helperFunctions/commonHelperFunctions';
 import { loginSuccessAction,logoutAction } from './slices/authSlice';
 import { marketContentAction, tokenExceededAction } from './slices/marketContentSlice';
 import { paymentOrderAction } from './slices/paymentSlice';
+import jwt_decode from "jwt-decode";
+
 
 export const generateMarketingContentAction =
   (description, temp, outputs, multiInput, type, typeOfCard) => async (dispatch) => {
@@ -246,7 +248,11 @@ console.log("data===>",data)
         //   temp,
         // },
       });
-console.log("data===>",data)
+      console.log("data===>",data.data.googleAuthToken)
+
+      var decoded = jwt_decode(data.data.googleAuthToken);
+      console.log("data===>",decoded)
+
       // dispatch(paymentOrderAction(data.data))
 
       // dispatch(marketContentAction(data.data));
