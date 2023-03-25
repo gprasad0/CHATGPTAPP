@@ -22,8 +22,8 @@ function App() {
   console.log('theme=====>', theme);
   return (
     <>
-      {selector.authenticated && <SideTopBar />}
-      {/* <SideTopBar /> */}
+      {/* {selector.authenticated && <SideTopBar />} */}
+      <SideTopBar />
       <Routes>
         <Route
           path='/assistant'

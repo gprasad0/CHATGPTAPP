@@ -41,7 +41,7 @@ export const LoginPage = () => {
   },[selector])
 
   const  handleLogin = () =>{
-  
+  //This will open a window for the user to login using their gmail account
     window.open("http://localhost:3000/auth/google","_self")
   }
 

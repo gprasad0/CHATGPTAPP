@@ -178,6 +178,28 @@ export const generateMarketingContentAction =
     }
   };
 
+  export const UserLogoutAction =
+  (signupData) => async (dispatch) => {
+    // console.log("data====>?",data)
+    try {
+      let data = await axios({
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
+        },
+        url: 'http://localhost:3000/auth/logout',
+        withCredentials: true,
+
+        // data: signupData
+      });
+
+      // dispatch(marketContentAction(data.data));
+    } catch (e) {
+      return console.error(e.message);
+    }
+  };
+
 
 
   export const makeOrderRequest =

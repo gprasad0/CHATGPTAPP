@@ -32,7 +32,7 @@ import { TopBar } from '../components/TopBar';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutAction } from '../redux/slices/authSlice';
+import { UserLogoutAction } from '../redux/apiActions';
 
 
 const drawerWidth = 200;
@@ -122,8 +122,8 @@ export function SideTopBar() {
 
 
   const handleLogout = () =>{
-    dispatch(logoutAction())
-    navigate("/login")
+    // dispatch(UserLogoutAction())
+    // navigate("/login")
   }
 
   return (
