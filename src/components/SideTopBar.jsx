@@ -122,7 +122,7 @@ export function SideTopBar() {
 
 
   const handleLogout = () =>{
-    // dispatch(UserLogoutAction())
+    dispatch(UserLogoutAction())
     // navigate("/login")
   }
 

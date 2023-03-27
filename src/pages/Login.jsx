@@ -22,7 +22,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
 });
 
-export const LoginPage = () => {
+export const  LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const selector = useSelector(state=>state.auth)
