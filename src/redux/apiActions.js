@@ -270,10 +270,7 @@ console.log("data===>",data)
         //   temp,
         // },
       });
-      console.log("data===>",data.data.googleAuthToken)
 
-      var decoded = jwt_decode(data.data.googleAuthToken);
-      console.log("data===>",decoded)
 
       // dispatch(paymentOrderAction(data.data))
 

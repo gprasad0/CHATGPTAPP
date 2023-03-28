@@ -13,17 +13,19 @@ export const authSlice = createSlice({
     loginSuccessAction: (state, action) => {
       state.authenticated = true;
       state.loading = false;
-      state.token = action.payload
+      state.token = action.payload.token
     },
     loginLoadingAction: (state, action) => {
       state.authenticated = false;
       state.loading = true;
       state.token = ""
+      
     },
     logoutAction: (state, action) => {
       state.authenticated = false;
       state.loading = false;
       state.token = ""
+
     },
   },
 });
