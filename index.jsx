@@ -8,6 +8,17 @@ import {store} from "./src/redux/store";
 import {theme} from "./mainTheme";
 import "./index.css";
 import './i18n';
+import axios from 'axios';
+
+
+axios.interceptors.request.use(function (config) {
+  config.withCredentials = true
+  // Do something before request is sent
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

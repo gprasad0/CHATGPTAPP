@@ -37,10 +37,10 @@ export const MainCardDashboard = () => {
   };
 
   useEffect(()=>{
-    // if(orderId !== ""){
-    //   displayRazorPay()
+    if(orderId !== ""){
+      // displayRazorPay()
 
-    // }
+    }
   },[orderId])
 
   const displayRazorPay = async() =>{

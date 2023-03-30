@@ -16,14 +16,16 @@ function App() {
   const selector = useSelector((state) => state.auth);
   const theme = useTheme();
 
+
+  
   useEffect(() => {
     //make axios call to
   }, []);
   console.log('theme=====>', theme);
   return (
     <>
-      {/* {selector.authenticated && <SideTopBar />} */}
-      <SideTopBar />
+      {selector.authenticated && <SideTopBar />}
+      {/* <SideTopBar /> */}
       <Routes>
         <Route
           path='/assistant'

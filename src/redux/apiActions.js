@@ -20,7 +20,7 @@ export const generateMarketingContentAction =
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         },
         url: 'http://localhost:3000/api/storyscape/compose',
-        withCredentials: true,
+        
 
         // data: {
         //   description,
@@ -122,7 +122,7 @@ export const generateMarketingContentAction =
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${token}`
         },
-        withCredentials: true,
+        
 
         url: 'http://localhost:3000/auth/refresh',
         // data:loginData
@@ -189,7 +189,7 @@ export const generateMarketingContentAction =
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
         url: 'http://localhost:3000/auth/logout',
-        withCredentials: true,
+        
 
         // data: signupData
       });
@@ -212,6 +212,8 @@ export const generateMarketingContentAction =
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
         url: 'http://localhost:3000/api/makeOrder',
+        // 
+
         // data: {
         //   prompt,
         //   outputs,
@@ -260,7 +262,7 @@ console.log("data===>",data)
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${token}`
         },
-        withCredentials: true,
+        
 
         url: 'http://localhost:3000/auth/googleOauthSuccess',
         // data:loginData
