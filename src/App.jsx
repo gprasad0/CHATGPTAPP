@@ -30,17 +30,17 @@ function App() {
         <Route
           path='/assistant'
           element={
-            // <ProtectedRoutes>
+            <ProtectedRoutes>
               <MarketingContent />
-            // </ProtectedRoutes>
+             </ProtectedRoutes>
           }
         />
         <Route
           path='/home'
           element={
-            // <ProtectedRoutes>
+             <ProtectedRoutes>
               <MainCardDashboard />
-            // </ProtectedRoutes>
+             </ProtectedRoutes>
           }
         />
         <Route path='/login' element={<LoginPage />} />

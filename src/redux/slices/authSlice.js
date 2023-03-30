@@ -22,6 +22,7 @@ export const authSlice = createSlice({
       
     },
     logoutAction: (state, action) => {
+      console.log("fefef==>")
       state.authenticated = false;
       state.loading = false;
       state.token = ""

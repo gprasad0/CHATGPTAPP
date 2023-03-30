@@ -33,6 +33,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserLogoutAction } from '../redux/apiActions';
+import { useEffect } from 'react';
+import { logoutAction } from '../redux/slices/authSlice';
 
 
 const drawerWidth = 200;
@@ -108,10 +110,18 @@ const Drawer = styled(MuiDrawer, {
 export function SideTopBar() {
   const { t, i18n } = useTranslation()
   const dispatch = useDispatch()
+  const authenticated = useSelector(state=>state.auth)
+
   const theme = useTheme();
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
 
+  useEffect(()=>{
+    console.log("authenticated===>",authenticated)
+    dispatch(UserLogoutAction())
+    
+
+  },[authenticated.authenticated])
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -121,9 +131,12 @@ export function SideTopBar() {
   };
 
 
+
+
   const handleLogout = () =>{
-    dispatch(UserLogoutAction())
-    // navigate("/login")
+    navigate("/login")
+    dispatch(logoutAction())
+    
   }
 
   return (

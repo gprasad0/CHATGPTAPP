@@ -99,6 +99,8 @@ export const generateMarketingContentAction =
     if(data.status == 200){
       // let x = document.cookie;
       localStorage.setItem("token",data.data.accessToken);
+      localStorage.setItem("userType","normalLogin");
+
       dispatch(loginSuccessAction(data.data.accessToken))
     }else{
       dispatch(logoutAction())
@@ -272,7 +274,15 @@ console.log("data===>",data)
         //   temp,
         // },
       });
-
+      console.log("data==>",data)
+      if(data.data.status == 200){
+        console.log("")
+        localStorage.setItem("userType","googleLogin");
+  
+  
+        dispatch(loginSuccessAction("googleUser"))
+      }
+      
 
       // dispatch(paymentOrderAction(data.data))
 
