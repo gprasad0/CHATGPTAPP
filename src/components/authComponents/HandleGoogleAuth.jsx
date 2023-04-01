@@ -15,6 +15,7 @@ const HandleGoogleAuth = () =>{
     },[])
 
     useEffect(()=>{
+        console.log("authenticated==>",authenticated)
         if(authenticated){
             navigate("/home")
         }

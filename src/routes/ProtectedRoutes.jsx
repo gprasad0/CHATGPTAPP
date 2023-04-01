@@ -11,8 +11,8 @@ export const ProtectedRoutes = ({children}) =>{
     useEffect(()=>{
         let data = localStorage.getItem('token')
         let userType = localStorage.getItem("userType")
-        console.log("userType===>",userType)
-        if(userType == "googleLogin"){
+        console.log("userType===>",userType,selector.authenticated)
+        if(userType == "googleLogin" && !selector.authenticated){
             dispatch(googleAuthSuccessAction())
 
         }else{
@@ -30,6 +30,8 @@ export const ProtectedRoutes = ({children}) =>{
 
     if (selector.authenticated) {
         return children;
-      } 
-    //   return <Navigate to="/"></Navigate>;
+      } else{
+        return <Navigate to="/"></Navigate>;
+      }
+    //   
 }

@@ -7,7 +7,7 @@ import jwt_decode from "jwt-decode";
 
 
 export const generateMarketingContentAction =
-  (description, temp, outputs, multiInput, type, typeOfCard) => async (dispatch) => {
+  (description, temp, outputs, multiInput, type, typeOfCard, apiCount) => async (dispatch) => {
 
     let actualPrompt = convertPrompt(multiInput,type,typeOfCard,description)
     console.log("localStorage==>",actualPrompt)
@@ -33,12 +33,13 @@ export const generateMarketingContentAction =
           prompt:actualPrompt,
           outputs,
           temp,
-          multiInput
+          multiInput,
+          apiCount
         },
       });
 
       console.log("dat====>",chatData)
-      if(chatData.data.status == 200){
+      if(chatData.status == 200){
         dispatch(marketContentAction(chatData.data.data));
 
       }else{
@@ -195,6 +196,7 @@ export const generateMarketingContentAction =
 
         // data: signupData
       });
+      dispatch(logoutAction())
 
       // dispatch(marketContentAction(data.data));
     } catch (e) {
@@ -275,7 +277,7 @@ console.log("data===>",data)
         // },
       });
       console.log("data==>",data)
-      if(data.data.status == 200){
+      if(data.status == 200){
         console.log("")
         localStorage.setItem("userType","googleLogin");
   

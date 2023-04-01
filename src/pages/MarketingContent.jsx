@@ -35,6 +35,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 export const MarketingContent = () => {
   const { t, i18n } = useTranslation();
+  const userData = useSelector(state=>state.userData)
 
   const [description, setDescription] = useState('');
   const [creativity, setCreativity] = useState('');
@@ -176,7 +177,8 @@ export const MarketingContent = () => {
                     outputs,
                     multiInput,
                     mainCardData,
-                    secondaryCardData
+                    secondaryCardData,
+                    userData.apiCount
                   )
                 )
               }
@@ -210,7 +212,7 @@ export const MarketingContent = () => {
           onClose={closeModal}
         >
           <Alert onClose={closeModal} severity='error' sx={{ width: '100%' }}>
-            Token Expired. Please refreesh token.
+            Token Expired. Please refresh token.
           </Alert>
         </Snackbar>
         </div>

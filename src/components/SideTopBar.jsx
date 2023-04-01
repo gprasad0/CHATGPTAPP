@@ -118,7 +118,7 @@ export function SideTopBar() {
 
   useEffect(()=>{
     console.log("authenticated===>",authenticated)
-    dispatch(UserLogoutAction())
+    // dispatch(UserLogoutAction())
     
 
   },[authenticated.authenticated])
@@ -135,7 +135,7 @@ export function SideTopBar() {
 
   const handleLogout = () =>{
     navigate("/login")
-    dispatch(logoutAction())
+    dispatch(UserLogoutAction())
     
   }
 
