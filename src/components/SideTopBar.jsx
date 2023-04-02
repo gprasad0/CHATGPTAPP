@@ -204,7 +204,7 @@ export function SideTopBar() {
               <SideBarText open={open}>{t("cards")}</SideBarText>
             </MenuIconDiv>
 
-            <MenuIconDiv onClick={() => navigate('/login')}>
+            <MenuIconDiv onClick={() => navigate('/payment')}>
               <PersonOutlineOutlinedIcon />
               <SideBarText open={open}>{t("user")}</SideBarText>
             </MenuIconDiv>

@@ -140,3 +140,14 @@ export const SecondaryTopicCard = styled('div')(({ theme }) => ({
 export const InputMarginTopDiv =  styled('div')(({ theme }) => ({
  margin:"15px 0"
 }));
+
+
+export const PaymentCardDiv =  styled('div')(({ theme }) => ({
+  background:"#4723d9",
+  borderRadius:"10%",
+  width:'15vw',
+  height:'30vh',
+  margin:'20px',
+  cursor: 'pointer',
+  textAlign:"center"
+ }));

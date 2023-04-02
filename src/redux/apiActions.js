@@ -207,7 +207,7 @@ export const generateMarketingContentAction =
 
 
   export const makeOrderRequest =
-  (prompt, temp, outputs) => async (dispatch) => {
+  (amount) => async (dispatch) => {
     try {
       let data = await axios({
         method: 'post',
@@ -218,11 +218,9 @@ export const generateMarketingContentAction =
         url: 'http://localhost:3000/api/makeOrder',
         // 
 
-        // data: {
-        //   prompt,
-        //   outputs,
-        //   temp,
-        // },
+        data: {
+          amount
+        },
       });
 console.log("data===>",data)
       dispatch(paymentOrderAction(data.data))

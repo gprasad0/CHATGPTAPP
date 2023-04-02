@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { ProtectedRoutes } from './routes/ProtectedRoutes';
 import { Handshake } from '@mui/icons-material';
 import HandleGoogleAuth from './components/authComponents/HandleGoogleAuth';
-
+import {Payment} from "./pages/Payment";
 function App() {
   const selector = useSelector((state) => state.auth);
   const theme = useTheme();
@@ -46,7 +46,7 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/home/googleAuth' element={<HandleGoogleAuth />} />
 
-        {/* <Route path='/payment' element={<LoginPage />} /> */}
+        <Route path='/payment' element={<ProtectedRoutes><Payment /></ProtectedRoutes>} />
        
         <Route path='*' element={<LoginPage />} />
       </Routes>
