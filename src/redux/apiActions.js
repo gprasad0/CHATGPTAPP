@@ -19,7 +19,7 @@ export const generateMarketingContentAction =
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         },
-        url: 'http://localhost:3000/api/storyscape/compose',
+        url: `${import.meta.env.VITE_BACKEND_APP_URL}/api/storyscape/compose`,
         
 
         // data: {
@@ -62,7 +62,7 @@ export const generateMarketingContentAction =
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
-        url: 'http://localhost:3000/auth/register',
+        url: `${import.meta.env.VITE_BACKEND_APP_URL}/auth/register`,
         // data: {
         //   prompt,
         //   outputs,
@@ -76,7 +76,7 @@ export const generateMarketingContentAction =
     }
   };
 
-
+  
   export const loginAction =
   (loginData) => async (dispatch) => {
     try {
@@ -86,7 +86,7 @@ export const generateMarketingContentAction =
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
-        url: 'http://localhost:3000/auth/login',
+        url: `${import.meta.env.VITE_BACKEND_APP_URL}/auth/login`,
         data:loginData,
         withCredentials: true
         // data: {
@@ -127,7 +127,7 @@ export const generateMarketingContentAction =
         },
         
 
-        url: 'http://localhost:3000/auth/refresh',
+        url: `${import.meta.env.VITE_BACKEND_APP_URL}/auth/refresh`,
         // data:loginData
         // data: {
         //   prompt,
@@ -171,7 +171,7 @@ export const generateMarketingContentAction =
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
-        url: 'http://localhost:3000/auth/signup',
+        url: `${import.meta.env.VITE_BACKEND_APP_URL}/auth/signup`,
         data: signupData
       });
 
@@ -191,7 +191,7 @@ export const generateMarketingContentAction =
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
-        url: 'http://localhost:3000/auth/logout',
+        url: `${import.meta.env.VITE_BACKEND_APP_URL}/auth/logout`,
         
 
         // data: signupData
@@ -215,7 +215,7 @@ export const generateMarketingContentAction =
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
-        url: 'http://localhost:3000/api/makeOrder',
+        url: `${import.meta.env.VITE_BACKEND_APP_URL}/api/makeOrder`,
         // 
 
         data: {
@@ -240,7 +240,7 @@ console.log("data===>",data)
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
         },
-        url: 'http://localhost:3000/api/verifyPayment',
+        url: `${import.meta.env.VITE_BACKEND_APP_URL}/api/verifyPayment`,
         data: {
           response,orderId
         },
@@ -266,7 +266,7 @@ console.log("data===>",data)
         },
         
 
-        url: 'http://localhost:3000/auth/googleOauthSuccess',
+        url: `${import.meta.env.VITE_BACKEND_APP_URL}/auth/googleOauthSuccess`,
         // data:loginData
         // data: {
         //   prompt,
