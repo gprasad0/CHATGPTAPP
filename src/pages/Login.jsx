@@ -16,6 +16,7 @@ import SignUpModal from '../components/SignUpModal';
 import { useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { NotificationBar } from '../components/commonUiElements/NotificationBar';
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -25,20 +26,38 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export const  LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const selector = useSelector(state=>state.auth)
+  const authSelector = useSelector(state=>state.auth)
+  const signupSelector = useSelector(state=>state.signUp.signUp)
   const [signUp,setSignUp] = useState(false)
   const [loginData,setLoginData] = useState({email:"",password:""})
+  const [notificationMessage,setNotificationMessage] = useState('')
   const [errorModal,setErrorModal] = useState(false)
+  const [notificationType,setNotificationType] = useState('')
+
   useEffect(()=>{
-    console.log("selector==>",selector)
-    if(selector.authenticated){
+    console.log("authSelector==>",authSelector)
+    if(authSelector.authenticated){
       let x = document.cookie;
       console.log("cookire",x)
       navigate("/home")
     }else{
       // setErrorModal(true)
     }
-  },[selector])
+  },[authSelector])
+
+
+  useEffect(()=>{
+    console.log("signupSelector===>",signupSelector)
+
+    if(signupSelector){
+
+setSignUp(false)
+setErrorModal(true)
+setNotificationType("success")
+setNotificationMessage("Sign up Successful. Please login using the same credentials")
+    }
+
+  }),[signupSelector]
 
   const  handleLogin = () =>{
   //This will open a window for the user to login using their gmail account
@@ -55,7 +74,11 @@ export const  LoginPage = () => {
 
   const closeModal = () => {
     setSignUp(false)
+  }
+
+  const closeNotificationModal = () =>{
     setErrorModal(false)
+
   }
 
   const handleSignUp = () =>{
@@ -192,7 +215,7 @@ export const  LoginPage = () => {
 
         {/* openDialog={submitModal}  closeDialog={closeModal} */}
 
-        <Snackbar
+        {/* <Snackbar
           open={errorModal}
           autoHideDuration={6000}
           onClose={closeModal}
@@ -200,7 +223,10 @@ export const  LoginPage = () => {
           <Alert onClose={closeModal} severity='error' sx={{ width: '100%' }}>
             Login Failed
           </Alert>
-        </Snackbar>
+        </Snackbar> */}
+
+      {/* <NotificationBar message={notificationMessage} handleClose={closeNotificationModal} open = {errorModal} type={notificationType} /> */}
+
       </div>
     </div>
   );

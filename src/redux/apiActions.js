@@ -3,6 +3,7 @@ import { convertPrompt } from '../helperFunctions/commonHelperFunctions';
 import { loginSuccessAction,logoutAction } from './slices/authSlice';
 import { marketContentAction, tokenExceededAction } from './slices/marketContentSlice';
 import { paymentOrderAction } from './slices/paymentSlice';
+import {signUpDataAction} from './slices/signUpSlice';
 import jwt_decode from "jwt-decode";
 
 
@@ -165,17 +166,21 @@ export const generateMarketingContentAction =
   (signupData) => async (dispatch) => {
     // console.log("data====>?",data)
     try {
-      let data = await axios({
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
-        },
-        url: `${import.meta.env.VITE_BACKEND_APP_URL}/auth/signup`,
-        data: signupData
-      });
+      // let data = await axios({
+      //   method: 'post',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
+      //   },
+      //   url: `${import.meta.env.VITE_BACKEND_APP_URL}/auth/signup`,
+      //   data: signupData
+      // });
+      console.log("dede===>")
+    
+        // dispatch(signUpDataAction(data.data.status,data.data.message));
+        dispatch(signUpDataAction({signup:true,signupMessage:"hi"}));
 
-      // dispatch(marketContentAction(data.data));
+      
     } catch (e) {
       return console.error(e.message);
     }

@@ -11,9 +11,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export const NotificationBar = ({open,message,handleClose,type}) =>{
 
   const [modal, setModal] = useState(false);
-  useEffect(()=>{
+  // useEffect(()=>{
 
-  },[])
+  // },[])
 
 const closeModal = () =>{
     setModal(false)

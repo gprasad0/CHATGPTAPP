@@ -18,11 +18,15 @@ const HandleGoogleAuth = () =>{
         console.log("authenticated==>",authenticated)
         if(authenticated){
             navigate("/home")
+        }else{
+            navigate("/login")
         }
     },[authenticated])
       
     return(
-        <div>Logged in</div>
+        <>
+            
+        </>
     )
 
 }
