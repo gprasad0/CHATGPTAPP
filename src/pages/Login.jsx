@@ -52,7 +52,7 @@ export const  LoginPage = () => {
     if(signupSelector){
 
 setSignUp(false)
-setErrorModal(true)
+// setErrorModal(true)
 setNotificationType("success")
 setNotificationMessage("Sign up Successful. Please login using the same credentials")
     }
@@ -225,7 +225,7 @@ setNotificationMessage("Sign up Successful. Please login using the same credenti
           </Alert>
         </Snackbar> */}
 
-      {/* <NotificationBar message={notificationMessage} handleClose={closeNotificationModal} open = {errorModal} type={notificationType} /> */}
+      {errorModal && <NotificationBar message={notificationMessage} handleClose={closeNotificationModal} open = {errorModal} type={notificationType} />}
 
       </div>
     </div>

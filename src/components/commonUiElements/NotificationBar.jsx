@@ -16,7 +16,7 @@ export const NotificationBar = ({open,message,handleClose,type}) =>{
   // },[])
 
 const closeModal = () =>{
-    setModal(false)
+    // setModal(false)
     handleClose()
 }
 
