@@ -166,19 +166,19 @@ export const generateMarketingContentAction =
   (signupData) => async (dispatch) => {
     // console.log("data====>?",data)
     try {
-      // let data = await axios({
-      //   method: 'post',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
-      //   },
-      //   url: `${import.meta.env.VITE_BACKEND_APP_URL}/auth/signup`,
-      //   data: signupData
-      // });
-      console.log("dede===>")
+      let data = await axios({
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
+        },
+        url: `${import.meta.env.VITE_BACKEND_APP_URL}/auth/signup`,
+        data: signupData
+      });
+      console.log("dede===>",data)
     
-        // dispatch(signUpDataAction(data.data.status,data.data.message));
-        dispatch(signUpDataAction({signup:true,signupMessage:"hi"}));
+        dispatch(signUpDataAction(data.data.status,data.data.message));
+        // dispatch(signUpDataAction({signup:true,signupMessage:"hi"}));
 
       
     } catch (e) {

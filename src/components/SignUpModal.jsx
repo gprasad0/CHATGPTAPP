@@ -50,8 +50,9 @@ export default function SignUpModal({ openDialog, closeDialog, modifyInput }) {
   }
 
   const handleSignUp = () =>{
-    console.log("==ed=e=d==>")
     dispatch(signUpAction(signUpData))
+    closeDialog();
+
   }
 
   return (
