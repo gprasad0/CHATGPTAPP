@@ -177,8 +177,8 @@ export const generateMarketingContentAction =
       });
       console.log("dede===>",data)
     
-        dispatch(signUpDataAction(data.data.status,data.data.message));
-        // dispatch(signUpDataAction({signup:true,signupMessage:"hi"}));
+        // dispatch(signUpDataAction(data.data.status,data.data.message));
+        dispatch(signUpDataAction({signup:data.data.status,signupMessage:data.data.message}));
 
       
     } catch (e) {

@@ -33,6 +33,7 @@ export const LoginPage = () => {
   const navigate = useNavigate();
   const authSelector = useSelector((state) => state.auth);
   const signupSelector = useSelector((state) => state.signUp.signUp);
+  const signupMessage = useSelector((state) => state.signUp.signUpData);
   const [signUp, setSignUp] = useState(false);
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [notificationMessage, setNotificationMessage] = useState('');
@@ -55,16 +56,18 @@ export const LoginPage = () => {
 
     if (signupSelector) {
       setSignUp(false);
-      setErrorModal(true)
+      setErrorModal(true);
       setNotificationType('success');
-      setNotificationMessage(
-        'Sign up Successful. Please login using the same credentials'
-      );
-    dispatch(signUpcloseAction());
+      setNotificationMessage(signupMessage);
+      dispatch(signUpcloseAction());
+    }
+
+    if(!signupSelector  && signupMessage.length > 0){
+      setErrorModal(true);
+      setNotificationMessage(signupMessage);
 
     }
-  },[signupSelector]);
-  
+  }, [signupSelector]);
 
   const handleLogin = () => {
     //This will open a window for the user to login using their gmail account
@@ -77,7 +80,7 @@ export const LoginPage = () => {
   };
 
   const closeModal = () => {
-    console.log("closemodal===>")
+    console.log('closemodal===>');
     setSignUp(false);
   };
 
