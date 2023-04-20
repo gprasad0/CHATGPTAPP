@@ -21,7 +21,6 @@ function App() {
   useEffect(() => {
     //make axios call to
   }, []);
-  console.log('theme=====>', theme);
   return (
     <>
       {selector.authenticated && <SideTopBar />}
