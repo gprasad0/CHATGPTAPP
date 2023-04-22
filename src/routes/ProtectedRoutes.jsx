@@ -2,6 +2,7 @@ import { Children, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { googleAuthSuccessAction, loginAction, refreshJwtAction } from "../redux/apiActions"
 import { Navigate, Route, useLocation, useNavigate } from 'react-router-dom';
+import { loginLoadingAction } from "../redux/slices/authSlice";
 
 export const ProtectedRoutes = ({children}) =>{
     const selector = useSelector(state=>state.auth)
@@ -9,16 +10,17 @@ export const ProtectedRoutes = ({children}) =>{
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        let data = localStorage.getItem('token')
+        // let data = localStorage.getItem('token')
         let userType = localStorage.getItem("userType")
         console.log("userType===>",userType,selector.authenticated)
         if(userType == "googleLogin" && !selector.authenticated){
             dispatch(googleAuthSuccessAction())
 
-        }else{
-
-        }
+        }else if(!selector.authenticated){
         console.log("selector----->",selector,)
+        dispatch(loginLoadingAction())
+            dispatch(refreshJwtAction())
+        }
         // if(!selector.authenticated){
         //     refreshJwtAction()
         // }else{
@@ -27,6 +29,9 @@ export const ProtectedRoutes = ({children}) =>{
         // }
     },[])
 
+    if(selector.loading){
+        return <div>Loading</div>
+    }
 
     if (selector.authenticated) {
         return children;

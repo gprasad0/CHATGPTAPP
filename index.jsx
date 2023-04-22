@@ -13,6 +13,11 @@ import axios from 'axios';
 
 axios.interceptors.request.use(function (config) {
   config.withCredentials = true
+
+  config.headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }
   // Do something before request is sent
   return config;
 }, function (error) {

@@ -16,10 +16,7 @@ export const generateMarketingContentAction =
     try {
       let chatData = await axios({
         method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem("token")}`
-        },
+        
         url: `${import.meta.env.VITE_BACKEND_APP_URL}/api/storyscape/compose`,
         
 
@@ -103,7 +100,7 @@ export const generateMarketingContentAction =
       localStorage.setItem("token",data.data.accessToken);
       localStorage.setItem("userType","normalLogin");
 
-      dispatch(loginSuccessAction(data.data.accessToken))
+      dispatch(loginSuccessAction({token:data.data.accessToken,loginType:"normalLogin"}))
     }else{
       dispatch(logoutAction())
 
@@ -137,12 +134,13 @@ export const generateMarketingContentAction =
         // },
       });
 
-    console.log("data===>",data)
 
     if(data.status == 200){
       // let x = document.cookie;
+    console.log("data===>",data)
+
       localStorage.setItem("token",data.data.accessToken);
-      dispatch(loginSuccessAction())
+      dispatch(loginSuccessAction({token:data.data.accessToken,loginType:"normalLogin"}))
     }else{
       dispatch(logoutAction())
 
@@ -201,6 +199,7 @@ export const generateMarketingContentAction =
 
         // data: signupData
       });
+      localStorage.clear();
       dispatch(logoutAction())
 
       // dispatch(marketContentAction(data.data));
@@ -285,7 +284,7 @@ console.log("data===>",data)
         localStorage.setItem("userType","googleLogin");
   
   
-        dispatch(loginSuccessAction("googleUser"))
+        dispatch(loginSuccessAction({token:data.data.accessToken,loginType:"googleUser"}))
       }
       
 

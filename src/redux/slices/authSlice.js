@@ -4,6 +4,7 @@ const initialState = {
   authenticated: false,
   loading: false,
   token:'',
+  loginType:''
 };
 
 export const authSlice = createSlice({
@@ -11,9 +12,11 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     loginSuccessAction: (state, action) => {
+      console.log("succes---->",action)
       state.authenticated = true;
       state.loading = false;
       state.token = action.payload.token
+      state.loginType = action.payload.loginType
     },
     loginLoadingAction: (state, action) => {
       state.authenticated = false;
